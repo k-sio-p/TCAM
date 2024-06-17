@@ -12,34 +12,36 @@
             background-color: #f4f4f4;
         }
         .wrapper {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
+            display: table;
             width: 100%;
-            min-height: 100vh;
-            padding: 20px;
-            box-sizing: border-box;
+            height: 100vh;
+            position: relative;
         }
         .ad {
             width: 350px;
             background-color: #f0f0f0;
             border: 1px solid #ccc;
-            margin: 10px;
-            padding: 10px;
-            box-sizing: border-box;
+            position: absolute;
+            top: 0;
+            bottom: 0;
+        }
+        .ad.left {
+            left: 0;
+        }
+        .ad.right {
+            right: 0;
         }
         .container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            width: 100%;
-            max-width: 600px;
+            display: table-cell;
+            vertical-align: middle;
+            text-align: center;
+            margin-left: 350px;
+            margin-right: 350px;
             padding: 20px;
             border: 1px solid #ccc;
             border-radius: 10px;
             background-color: white;
             box-shadow: 2px 2px 12px #aaa;
-            box-sizing: border-box;
         }
         input, button {
             margin: 10px 0;
@@ -60,20 +62,10 @@
         .definition {
             margin-top: 30px;
             text-align: left;
-            width: 100%;
         }
         .footer {
             text-align: center;
             margin-top: 20px;
-        }
-        @media (min-width: 768px) {
-            .wrapper {
-                flex-direction: row;
-                justify-content: space-between;
-            }
-            .container {
-                margin: 0 20px;
-            }
         }
     </style>
     <!-- Script Google AdSense -->
@@ -145,16 +137,6 @@ function calculateCAGR() {
     const startValue = parseFloat(document.getElementById('startValue').value);
     const endYear = parseFloat(document.getElementById('endYear').value);
     const endValue = parseFloat(document.getElementById('endValue').value);
-    
-    if (isNaN(startYear) || isNaN(startValue) || isNaN(endYear) || isNaN(endValue)) {
-        alert('Veuillez entrer des valeurs numériques valides.');
-        return;
-    }
-    
-    if (startYear >= endYear) {
-        alert('L\'année de départ doit être inférieure à l\'année de fin.');
-        return;
-    }
     
     const numYears = endYear - startYear;
     
