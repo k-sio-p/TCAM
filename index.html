@@ -9,49 +9,46 @@
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            background-color: #f4f4f4;
-        }
-        .page-wrapper {
-            display: flex;
-            width: 100%;
-            height: 100%;
-        }
-        .ad {
-            width: 200px;
-            background-color: #f0f0f0;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            text-align: center;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        .ad.left {
-            height: 100vh;
-        }
-        .ad.right {
-            height: 100vh;
-        }
-        .container-wrapper {
             display: flex;
             flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            background-color: #f4f4f4;
+        }
+        .content {
+            display: flex;
             justify-content: center;
             align-items: center;
-            flex-grow: 1;
+            width: 100%;
+            position: relative;
+        }
+        .ad {
+            width: 350px;
             height: 100vh;
+            background-color: #f0f0f0;
+            border: 1px solid #ccc;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: absolute;
+            top: 0;
+        }
+        .ad.left {
+            left: 0;
+        }
+        .ad.right {
+            right: 0;
         }
         .container {
             max-width: 600px;
             padding: 20px;
+            margin: 0 400px;
             border: 1px solid #ccc;
             border-radius: 10px;
-            box-shadow: 2px 2px 12px #aaa;
             background-color: white;
-            z-index: 1;
+            box-shadow: 2px 2px 12px #aaa;
+            text-align: center;
         }
         input, button {
             margin: 10px 0;
@@ -71,13 +68,7 @@
         }
         .definition {
             margin-top: 30px;
-        }
-        .definition h2 {
-            font-size: 20px;
-            margin-bottom: 10px;
-        }
-        .definition p {
-            margin-bottom: 20px;
+            text-align: left;
         }
         .footer {
             text-align: center;
@@ -90,62 +81,61 @@
 </head>
 <body>
 
-<div class="page-wrapper">
+<div class="content">
     <div class="ad left">
         <!-- Publicité à gauche -->
         <ins class="adsbygoogle"
-             style="display:block; height: 100%;"
+             style="display:block"
              data-ad-client="ca-pub-2168083320114212"
              data-ad-slot="XXXXXXX"
              data-ad-format="rectangle"></ins>
     </div>
 
-    <div class="container-wrapper">
-        <div class="container">
-            <h2>Calculateur de TCAM</h2>
-            <label for="startYear">Année de départ:</label>
-            <input type="number" id="startYear" name="startYear">
-            
-            <label for="startValue">Donnée de départ:</label>
-            <input type="number" id="startValue" name="startValue">
-            
-            <label for="endYear">Année de fin:</label>
-            <input type="number" id="endYear" name="endYear">
-            
-            <label for="endValue">Donnée de fin:</label>
-            <input type="number" id="endValue" name="endValue">
-            
-            <button onclick="calculateCAGR()">Calculer le TCAM</button>
-            
-            <p id="result"></p>
-            
-            <div class="definition">
-                <h2>Définition du TCAM</h2>
-                <p>Le Taux de Croissance Annuel Moyen (TCAM) est une mesure utilisée pour déterminer la moyenne annuelle de croissance d'un investissement sur une période donnée. Il lisse les fluctuations de croissance sur plusieurs années pour fournir une image plus précise du taux de croissance moyen.</p>
-                <h3>Méthode de calcul du TCAM</h3>
-                <p>Pour calculer le TCAM, nous utilisons la formule suivante :</p>
-                <p><strong>TCAM = [(Valeur finale / Valeur initiale) ^ (1 / Nombre d'années)] - 1</strong></p>
-                <p>Où :</p>
-                <ul>
-                    <li><strong>Valeur initiale</strong> est la valeur de départ de l'investissement.</li>
-                    <li><strong>Valeur finale</strong> est la valeur de fin de l'investissement.</li>
-                    <li><strong>Nombre d'années</strong> est la durée de l'investissement en années.</li>
-                </ul>
-            </div>
-        </div>
-        <div class="footer">
-            Vous souhaitez afficher votre annonce ? Contactez <a href="mailto:communication@k-sio-p.com">communication@k-sio-p.com</a>
+    <div class="container">
+        <h2>Calculateur de TCAM</h2>
+        <label for="startYear">Année de départ:</label>
+        <input type="number" id="startYear" name="startYear">
+        
+        <label for="startValue">Donnée de départ:</label>
+        <input type="number" id="startValue" name="startValue">
+        
+        <label for="endYear">Année de fin:</label>
+        <input type="number" id="endYear" name="endYear">
+        
+        <label for="endValue">Donnée de fin:</label>
+        <input type="number" id="endValue" name="endValue">
+        
+        <button onclick="calculateCAGR()">Calculer le TCAM</button>
+        
+        <p id="result"></p>
+        
+        <div class="definition">
+            <h2>Définition du TCAM</h2>
+            <p>Le Taux de Croissance Annuel Moyen (TCAM) est une mesure utilisée pour déterminer la moyenne annuelle de croissance d'un investissement sur une période donnée. Il lisse les fluctuations de croissance sur plusieurs années pour fournir une image plus précise du taux de croissance moyen.</p>
+            <h3>Méthode de calcul du TCAM</h3>
+            <p>Pour calculer le TCAM, nous utilisons la formule suivante :</p>
+            <p><strong>TCAM = [(Valeur finale / Valeur initiale) ^ (1 / Nombre d'années)] - 1</strong></p>
+            <p>Où :</p>
+            <ul>
+                <li><strong>Valeur initiale</strong> est la valeur de départ de l'investissement.</li>
+                <li><strong>Valeur finale</strong> est la valeur de fin de l'investissement.</li>
+                <li><strong>Nombre d'années</strong> est la durée de l'investissement en années.</li>
+            </ul>
         </div>
     </div>
 
     <div class="ad right">
         <!-- Publicité à droite -->
         <ins class="adsbygoogle"
-             style="display:block; height: 100%;"
+             style="display:block"
              data-ad-client="ca-pub-2168083320114212"
              data-ad-slot="XXXXXXX"
              data-ad-format="rectangle"></ins>
     </div>
+</div>
+
+<div class="footer">
+    Vous souhaitez afficher votre annonce ? Contactez <a href="mailto:communication@k-sio-p.com">communication@k-sio-p.com</a>
 </div>
 
 <script>
