@@ -9,16 +9,20 @@
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            position: relative;
         }
         .container {
             max-width: 600px;
-            margin: auto;
             padding: 20px;
             border: 1px solid #ccc;
             border-radius: 10px;
             box-shadow: 2px 2px 12px #aaa;
             margin-bottom: 20px;
-            overflow: hidden; /* Pour clear les floats */
+            background-color: white;
         }
         input, button {
             margin: 10px 0;
@@ -37,24 +41,25 @@
             background-color: #45a049;
         }
         .ad {
-            width: 300px; /* Largeur des annonces */
-            height: 250px; /* Hauteur des annonces */
+            width: 300px;
             background-color: #f0f0f0;
             border: 1px solid #ccc;
             border-radius: 5px;
             text-align: center;
-            margin: 20px auto;
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
         .ad.left {
-            float: left;
-            margin-right: 20px;
+            left: 0;
         }
         .ad.right {
-            float: right;
-            margin-left: 20px;
+            right: 0;
         }
         .ad-content {
-            line-height: 240px; /* Centre le texte verticalement */
             font-size: 14px;
         }
         .definition {
@@ -81,7 +86,7 @@
 <div class="ad left">
     <!-- Publicité à gauche -->
     <ins class="adsbygoogle"
-         style="display:block"
+         style="display:block; height: 100%;"
          data-ad-client="ca-pub-XXXXXXXXXXXX"
          data-ad-slot="XXXXXXXXXX"
          data-ad-format="rectangle"></ins>
@@ -123,7 +128,7 @@
 <div class="ad right">
     <!-- Publicité à droite -->
     <ins class="adsbygoogle"
-         style="display:block"
+         style="display:block; height: 100%;"
          data-ad-client="ca-pub-XXXXXXXXXXXX"
          data-ad-slot="XXXXXXXXXX"
          data-ad-format="rectangle"></ins>
