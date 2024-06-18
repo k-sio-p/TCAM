@@ -15,11 +15,24 @@
             display: flex;
             flex-direction: column;
             align-items: center;
+            width: 100%;
+            min-height: 100vh;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        .ad {
+            width: 350px;
+            background-color: #f0f0f0;
+            border: 1px solid #ccc;
+            margin: 10px;
+            padding: 10px;
+            box-sizing: border-box;
+            min-height: 900px;
         }
         .container {
             display: flex;
             flex-direction: column;
-            align-items: flex-start; /* Aligner les éléments à gauche */
+            align-items: center;
             width: 100%;
             max-width: 600px;
             padding: 20px;
@@ -28,13 +41,9 @@
             background-color: white;
             box-shadow: 2px 2px 12px #aaa;
             box-sizing: border-box;
-            margin: 10px;
-        }
-        label {
-            margin-bottom: 5px; /* Espacement entre les labels et les champs */
         }
         input, button {
-            margin-bottom: 10px; /* Espacement entre les champs */
+            margin: 10px 0;
             padding: 10px;
             width: 100%;
             box-sizing: border-box;
@@ -68,10 +77,22 @@
             }
         }
     </style>
+    <!-- Script Google AdSense -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2168083320114212"
+     crossorigin="anonymous"></script>
 </head>
 <body>
 
 <div class="wrapper">
+    <div class="ad left">
+        <!-- Publicité à gauche -->
+        <ins class="adsbygoogle"
+             style="display:block"
+             data-ad-client="ca-pub-2168083320114212"
+             data-ad-slot="XXXXXXX"
+             data-ad-format="rectangle"></ins>
+    </div>
+
     <div class="container">
         <h2>Calculateur de TCAM</h2>
         <label for="startYear">Année de départ:</label>
@@ -103,6 +124,15 @@
                 <li><strong>Nombre d'années</strong> est la durée de l'investissement en années.</li>
             </ul>
         </div>
+    </div>
+
+    <div class="ad right">
+        <!-- Publicité à droite -->
+        <ins class="adsbygoogle"
+             style="display:block"
+             data-ad-client="ca-pub-2168083320114212"
+             data-ad-slot="XXXXXXX"
+             data-ad-format="rectangle"></ins>
     </div>
 </div>
 
