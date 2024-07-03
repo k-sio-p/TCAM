@@ -29,7 +29,7 @@
         }
 
         .container {
-            width: 90%;
+            width: 80%; /* Réduit la largeur du contenu principal */
             max-width: 1200px;
             margin: auto;
             display: flex;
@@ -128,6 +128,36 @@
         .footer a:hover {
             text-decoration: underline;
         }
+
+        /* Style pour l'image et le lien sur les côtés */
+        .side-content {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+
+        .side-content img {
+            max-width: 40%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.2);
+        }
+
+        .side-content a {
+            width: 40%;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: #fff;
+            text-align: center;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 16px;
+            transition: background-color .3s ease;
+        }
+
+        .side-content a:hover {
+            background-color: #45a049;
+        }
     </style>
 </head>
 <body>
@@ -201,8 +231,17 @@
                 <li>Rapid Glacier and Snowmelt: Rising temperatures lead to accelerated melting, increasing the volume of water available to saturate soils.</li>
                 <li>Deforestation: Reduction of natural vegetation decreases soil's ability to absorb water, thereby increasing the risk of landslides.</li>
                 <li>Altered Precipitation Patterns: Climate changes alter precipitation patterns, leading to periods of drought followed by heavy rains, fostering conditions conducive to mudslides.</li>
+                <li>Wildfire Impacts: Wildfires expose landscapes to increased risk of mudslides during heavy rains due to post-fire debris flows, which can occur suddenly and pose significant hazards.</li>
             </ul>
         </div>
+    </div>
+
+    <div class="side-content">
+        <!-- Placeholder for an image -->
+        <img src="placeholder.jpg" alt="Placeholder Image">
+
+        <!-- Placeholder for a link -->
+        <a href="#">Learn More</a>
     </div>
 
     <div class="footer">
