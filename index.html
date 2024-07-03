@@ -23,23 +23,16 @@
             display: flex;
             justify-content: center;
             align-items: center;
+            flex-direction: column;
             min-height: 100vh;
             margin: 0;
             padding: 0;
         }
 
-        .container-wrapper {
-            display: flex;
-            flex-wrap: wrap;
-            width: 90%;
-            max-width: 1200px;
-            margin: auto;
-            justify-content: space-between;
-        }
-
         .container {
-            flex: 1;
-            margin: 10px;
+            width: 90%;
+            max-width: 600px;
+            margin: 20px 0;
             background-color: #fff;
             padding: 20px;
             border-radius: 8px;
@@ -143,68 +136,66 @@
 </head>
 <body>
 
-<div class="container-wrapper">
-    <div class="container">
-        <h1>Mudslide Risk Calculator</h1>
-        <label for="rainfall">Annual Precipitation (in mm):</label>
-        <input type="number" id="rainfall" name="rainfall" placeholder="Enter Annual Precipitation" required>
+<div class="container">
+    <h1>Mudslide Risk Calculator</h1>
+    <label for="rainfall">Annual Precipitation (in mm):</label>
+    <input type="number" id="rainfall" name="rainfall" placeholder="Enter Annual Precipitation" required>
 
-        <label for="slope">Terrain Slope (in degrees):</label>
-        <input type="number" id="slope" name="slope" placeholder="Enter Terrain Slope" required>
+    <label for="slope">Terrain Slope (in degrees):</label>
+    <input type="number" id="slope" name="slope" placeholder="Enter Terrain Slope" required>
 
-        <label for="vegetation">Vegetation Type:</label>
-        <select id="vegetation" name="vegetation">
-            <option value="dense">Dense Vegetation</option>
-            <option value="moderate">Moderate Vegetation</option>
-            <option value="sparse">Sparse Vegetation</option>
-        </select>
+    <label for="vegetation">Vegetation Type:</label>
+    <select id="vegetation" name="vegetation">
+        <option value="dense">Dense Vegetation</option>
+        <option value="moderate">Moderate Vegetation</option>
+        <option value="sparse">Sparse Vegetation</option>
+    </select>
 
-        <label for="soilType">Soil Type:</label>
-        <select id="soilType" name="soilType">
-            <option value="clay">Clayey</option>
-            <option value="sandy">Sandy</option>
-            <option value="loamy">Loamy</option>
-        </select>
+    <label for="soilType">Soil Type:</label>
+    <select id="soilType" name="soilType">
+        <option value="clay">Clayey</option>
+        <option value="sandy">Sandy</option>
+        <option value="loamy">Loamy</option>
+    </select>
 
-        <button onclick="calculateRisk()">Estimate Risk</button>
+    <button onclick="calculateRisk()">Estimate Risk</button>
 
-        <div class="result">
-            <p id="riskLevel"></p>
-        </div>
-
-        <div class="scale" id="scale">
-            <!-- Scale will be dynamically generated here -->
-        </div>
+    <div class="result">
+        <p id="riskLevel"></p>
     </div>
 
-    <div class="container">
-        <div class="info">
-            <h2>Definition and Scientific Explanation of a Mudslide</h2>
-            <p>A mudslide is a geological phenomenon characterized by the rapid movement of a mixture of rock debris, water, and sediment down a slope. It is often triggered by intense rains or rapid snowmelt, causing soil saturation and sudden sliding.</p>
-
-            <h2>Calculation Method Used</h2>
-            <p>The calculation of mudslide risk takes into account several factors:</p>
-            <ul>
-                <li><strong>Annual Precipitation:</strong> Measured in millimeters, influencing the amount of water available to saturate the soil.</li>
-                <li><strong>Terrain Slope:</strong> Expressed in degrees, determining the ease with which the soil can slide.</li>
-                <li><strong>Vegetation Type:</strong> Dense, moderate, or sparse, impacting water absorption and soil stability.</li>
-                <li><strong>Soil Type:</strong> Clayey, sandy, or loamy, influencing water retention and susceptibility to sliding.</li>
-            </ul>
-
-            <h2>Impact of Climate Change on Mudslides</h2>
-            <p>Climate change can intensify the risk of mudslides in several ways:</p>
-            <ul>
-                <li>Increased Intense Precipitation: Extreme weather events become more frequent, increasing the likelihood of torrential rains.</li>
-                <li>Rapid Glacier and Snowmelt: Rising temperatures lead to accelerated melting, increasing the volume of water available to saturate soils.</li>
-                <li>Deforestation: Reduction of natural vegetation decreases soil's ability to absorb water, thereby increasing the risk of landslides.</li>
-                <li>Altered Precipitation Patterns: Climate changes alter precipitation patterns, leading to periods of drought followed by heavy rains, fostering conditions conducive to mudslides.</li>
-            </ul>
-        </div>
+    <div class="scale" id="scale">
+        <!-- Scale will be dynamically generated here -->
     </div>
+</div>
 
-    <div class="container">
-        <button onclick="contact()">Contact</button>
+<div class="container">
+    <div class="info">
+        <h2>Definition and Scientific Explanation of a Mudslide</h2>
+        <p>A mudslide is a geological phenomenon characterized by the rapid movement of a mixture of rock debris, water, and sediment down a slope. It is often triggered by intense rains or rapid snowmelt, causing soil saturation and sudden sliding.</p>
+
+        <h2>Calculation Method Used</h2>
+        <p>The calculation of mudslide risk takes into account several factors:</p>
+        <ul>
+            <li><strong>Annual Precipitation:</strong> Measured in millimeters, influencing the amount of water available to saturate the soil.</li>
+            <li><strong>Terrain Slope:</strong> Expressed in degrees, determining the ease with which the soil can slide.</li>
+            <li><strong>Vegetation Type:</strong> Dense, moderate, or sparse, impacting water absorption and soil stability.</li>
+            <li><strong>Soil Type:</strong> Clayey, sandy, or loamy, influencing water retention and susceptibility to sliding.</li>
+        </ul>
+
+        <h2>Impact of Climate Change on Mudslides</h2>
+        <p>Climate change can intensify the risk of mudslides in several ways:</p>
+        <ul>
+            <li>Increased Intense Precipitation: Extreme weather events become more frequent, increasing the likelihood of torrential rains.</li>
+            <li>Rapid Glacier and Snowmelt: Rising temperatures lead to accelerated melting, increasing the volume of water available to saturate soils.</li>
+            <li>Deforestation: Reduction of natural vegetation decreases soil's ability to absorb water, thereby increasing the risk of landslides.</li>
+            <li>Altered Precipitation Patterns: Climate changes alter precipitation patterns, leading to periods of drought followed by heavy rains, fostering conditions conducive to mudslides.</li>
+        </ul>
     </div>
+</div>
+
+<div class="container">
+    <button onclick="contact()">Contact</button>
 </div>
 
 <script>
@@ -220,36 +211,81 @@ function calculateRisk() {
         return;
     }
 
-    // Calcul du niveau de risque
-    let riskLevel = 1; // Niveau de risque de base
+    // Attribuer des points en fonction de chaque critère
+    let riskScore = 0;
 
-    // Critères ajustés pour le calcul du risque
-    if (rainfall > 1000 && slope > 25 && vegetation === 'sparse' && soilType === 'clay') {
-        riskLevel = 10;
-    } else if (rainfall > 600 && slope > 15 && vegetation === 'moderate' && (soilType === 'clay' || soilType === 'loamy')) {
-        riskLevel = 7;
-    } else if (rainfall > 300 && slope > 10) {
-        riskLevel = 4;
-    } else {
-        riskLevel = 2; // Niveau de risque par défaut si aucun des critères ne correspond
+    // Points pour les précipitations
+    if (rainfall > 1000) {
+        riskScore += 3;
+    } else if (rainfall > 600) {
+        riskScore += 2;
+    } else if (rainfall > 300) {
+        riskScore += 1;
     }
 
-    // Affichage du niveau de risque
-    document.getElementById('riskLevel').innerHTML = `Risk Level: <strong>${riskLevel}</strong>`;
+    // Points pour la pente du terrain
+    if (slope > 25) {
+        riskScore += 3;
+    } else if (slope > 15) {
+        riskScore += 2;
+    } else if (slope > 10) {
+        riskScore += 1;
+    }
 
-    // Affichage de l'échelle de risque
+    // Points pour le type de végétation
+    if (vegetation === 'sparse') {
+        riskScore += 3;
+    } else if (vegetation === 'moderate') {
+        riskScore += 2;
+    } else if (vegetation === 'dense') {
+        riskScore += 1;
+    }
+
+    // Points pour le type de sol
+    if (soilType === 'clay') {
+        riskScore += 3;
+    } else if (soilType === 'loamy') {
+        riskScore += 2;
+    } else if (soilType === 'sandy') {
+        riskScore += 1;
+    }
+
+    displayRisk(riskScore);
+}
+
+function displayRisk(riskScore) {
+    const riskLevelText = [
+        'Very Low Risk',
+        'Low Risk',
+        'Moderate Risk',
+        'High Risk',
+        'Very High Risk',
+        'Extreme Risk'
+    ];
+
+    let riskLevel = 'Very Low Risk';
+    if (riskScore >= 10) {
+        riskLevel = riskLevelText[5];
+    } else if (riskScore >= 8) {
+        riskLevel = riskLevelText[4];
+    } else if (riskScore >= 6) {
+        riskLevel = riskLevelText[3];
+    } else if (riskScore >= 4) {
+        riskLevel = riskLevelText[2];
+    } else if (riskScore >= 2) {
+        riskLevel = riskLevelText[1];
+    }
+
+    document.getElementById('riskLevel').textContent = `Risk Level: ${riskLevel}`;
+
+    // Afficher l'échelle des risques
     const scale = document.getElementById('scale');
     scale.innerHTML = '';
-
-    const riskDescriptions = [
-        'Low Risk', 'Low to Moderate Risk', 'Moderate Risk', 'Moderate to High Risk', 'High Risk',
-        'Very High Risk', 'Extremely High Risk', 'Severe Risk', 'Critical Risk', 'Catastrophic Risk'
-    ];
 
     for (let i = 1; i <= 10; i++) {
         const scaleItem = document.createElement('div');
         scaleItem.classList.add('scale-item');
-        scaleItem.style.backgroundColor = i <= riskLevel ? '#f44336' : '#4CAF50';
+        scaleItem.style.backgroundColor = i <= riskScore ? '#f44336' : '#4CAF50';
         scaleItem.textContent = i;
         scale.appendChild(scaleItem);
     }
