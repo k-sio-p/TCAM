@@ -19,6 +19,8 @@
         .result { margin-top: 20px; text-align: center; }
         .footer { text-align: center; margin-top: 20px; color: #007BFF; }
         .footer a { color: #4CAF50; }
+        .info { margin-top: 20px; }
+        .info p { margin-bottom: 10px; }
     </style>
 </head>
 <body>
@@ -48,7 +50,7 @@
     <label for="intensePrecip">Événements de précipitations intenses :</label>
     <input type="number" id="intensePrecip" name="intensePrecip" placeholder="Nombre d'événements" min="0" step="1">
 
-    <label for="previousLandslides">Antécédents de coulées de boue :</label>
+    <label for="previousLandslides">Antécédents de coulées de boue sur les dernières années :</label>
     <input type="number" id="previousLandslides" name="previousLandslides" placeholder="Nombre d'incidents" min="0" step="1">
 
     <button onclick="calculateRisk()">Estimer le Risque</button>
@@ -56,6 +58,17 @@
     <div class="result">
         <p id="riskLevel"></p>
     </div>
+</div>
+
+<div class="info">
+    <h2>Définition et Explication Scientifique d'une Coulée de Boue</h2>
+    <p>Une coulée de boue est un phénomène géologique caractérisé par le déplacement rapide d'un mélange de débris rocheux, d'eau et de sédiments le long d'une pente. Elle est souvent déclenchée par des pluies intenses ou la fonte rapide de neige.</p>
+
+    <h2>Méthode de Calcul Utilisée</h2>
+    <p>Le calcul du risque de coulée de boue est basé sur plusieurs facteurs : les précipitations annuelles, la pente du terrain, le type de végétation, le type de sol, les événements de précipitations intenses et les antécédents de coulées de boue sur une période donnée. Ces facteurs sont pondérés et évalués pour estimer le niveau de risque.</p>
+
+    <h2>Impact du Changement Climatique sur les Coulées de Boue</h2>
+    <p>Le changement climatique peut influencer les coulées de boue de plusieurs manières. L'augmentation des températures peut accélérer la fonte des glaciers et de la neige, augmentant ainsi le risque de coulées de boue. De plus, des précipitations plus intenses peuvent devenir plus fréquentes, exacerbant le phénomène des coulées de boue dans les zones sensibles.</p>
 </div>
 
 <div class="footer">
