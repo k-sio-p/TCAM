@@ -30,17 +30,20 @@
 
         .container {
             width: 90%;
-            max-width: 600px; /* Réduction de la largeur maximale à 600px */
+            max-width: 1200px;
             margin: auto;
-            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
         .panel {
+            width: 100%;
+            padding: 20px;
             background-color: #fff;
             border-radius: 8px;
             box-shadow: 0 0 15px rgba(0,0,0,0.1);
             margin-bottom: 20px;
-            padding: 20px;
         }
 
         h1 {
@@ -158,6 +161,14 @@
         <label for="previousLandslides">Previous Mudslides (last 10 years):</label>
         <input type="number" id="previousLandslides" name="previousLandslides" placeholder="Number of Incidents" min="0" step="1">
 
+        <label for="wildfire">Wildfire Impact (last 10 years):</label>
+        <select id="wildfire" name="wildfire">
+            <option value="none">None</option>
+            <option value="low">Low</option>
+            <option value="medium">Medium</option>
+            <option value="high">High</option>
+        </select>
+
         <button onclick="calculateRisk()">Estimate Risk</button>
 
         <div class="result">
@@ -180,6 +191,7 @@
                 <li><strong>Soil Type:</strong> Clayey, sandy, or loamy, influencing water retention and susceptibility to sliding.</li>
                 <li><strong>Intense Precipitation Events:</strong> Over a 10-year period, indicating the frequency of rains likely to trigger mudslides.</li>
                 <li><strong>Previous Mudslides:</strong> Over a 10-year period, signaling recent likelihood of such disasters.</li>
+                <li><strong>Wildfire Impact:</strong> The impact of wildfires in the last 10 years, affecting the landscape's vulnerability to mudslides during heavy rains. Options range from "None" to "High".</li>
             </ul>
 
             <h2>Impact of Climate Change on Mudslides</h2>
@@ -206,6 +218,7 @@ function calculateRisk() {
     const soilType = document.getElementById('soilType').value;
     const intensePrecip = parseInt(document.getElementById('intensePrecip').value) || 0;
     const previousLandslides = parseInt(document.getElementById('previousLandslides').value) || 0;
+    const wildfireImpact = document.getElementById('wildfire').value;
 
     if (isNaN(rainfall) || isNaN(slope)) {
         alert('Please enter valid numerical values.');
@@ -215,9 +228,9 @@ function calculateRisk() {
     let riskLevel;
 
     // Mudslide risk calculation based on criteria
-    if (rainfall > 800 && slope > 25 && vegetation === 'sparse' && soilType === 'clay' && intensePrecip >= 3 && previousLandslides >= 2) {
+    if (rainfall > 800 && slope > 25 && vegetation === 'sparse' && soilType === 'clay' && intensePrecip >= 3 && previousLandslides >= 2 && wildfireImpact === 'high') {
         riskLevel = 10;
-    } else if (rainfall > 400 && slope > 15 && vegetation === 'moderate' && (soilType === 'clay' || soilType === 'loamy') && intensePrecip >= 2 && previousLandslides >= 1) {
+    } else if (rainfall > 400 && slope > 15 && vegetation === 'moderate' && (soilType === 'clay' || soilType === 'loamy') && intensePrecip >= 2 && previousLandslides >= 1 && (wildfireImpact === 'medium' || wildfireImpact === 'high')) {
         riskLevel = 7;
     } else {
         riskLevel = 3;
