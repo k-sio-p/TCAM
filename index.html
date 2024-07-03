@@ -1,78 +1,84 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Calculateur de Risques de Coulée de Boue</title>
-    <meta name="description" content="Estimez le risque de coulée de boue dans une zone donnée avec notre calculateur de risques.">
-    <meta name="keywords" content="Calculateur de risques de coulée de boue, estimation de risques, prévention des catastrophes naturelles">
-    <meta name="author" content="Votre Nom">
-    <link rel="canonical" href="https://www.votre-site.com/calculateur-risques-coulee-boue">
+    <title>Mudslide Risk Calculator</title>
+    <meta name="description" content="Estimate the risk of mudslides in a given area with our risk calculator.">
+    <meta name="keywords" content="Mudslide risk calculator, risk estimation, natural disaster prevention">
+    <meta name="author" content="Your Name">
+    <link rel="canonical" href="https://www.your-website.com/mudslide-risk-calculator">
     <style>
-        body { font-family: Arial, sans-serif; margin: 0; padding: 0; background-color: #f4f4f4; color: #333; }
-        .container { max-width: 600px; margin: 20px auto; padding: 20px; background-color: #fff; border: 1px solid #ccc; border-radius: 10px; box-shadow: 2px 2px 12px #aaa; }
-        h1 { color: #333; text-align: center; }
-        label { display: block; margin-top: 10px; }
-        input, select, button { width: calc(100% - 20px); padding: 10px; margin-top: 5px; border: 1px solid #ccc; border-radius: 5px; box-sizing: border-box; }
-        button { background-color: #4CAF50; color: white; border: none; cursor: pointer; transition: background-color 0.3s ease; }
-        button:hover { background-color: #45a049; }
-        .result { margin-top: 20px; text-align: center; }
-        .info { margin-top: 20px; }
-        .info p { margin-bottom: 10px; }
-        .footer { text-align: center; margin-top: 20px; color: #333; }
-        .footer a { color: #4CAF50; }
+        body{font-family:Arial,sans-serif;margin:0;padding:0;background-color:#f4f4f4;color:#333;display:flex} .left-panel{width:50%;padding:20px;box-sizing:border-box} .right-panel{width:50%;background-color:#fff;padding:20px;box-sizing:border-box} h1{color:#333;text-align:center} label{display:block;margin-top:10px} input,select,button{width:calc(100% - 20px);padding:10px;margin-top:5px;border:1px solid #ccc;border-radius:5px;box-sizing:border-box} button{background-color:#4CAF50;color:#fff;border:none;cursor:pointer;transition:background-color .3s ease} button:hover{background-color:#45a049} .result{margin-top:20px;text-align:center} .result-scale{display:flex;justify-content:center;align-items:center;margin-top:20px} .scale-item{width:30px;height:30px;background-color:#4CAF50;color:#fff;border-radius:50%;display:flex;justify-content:center;align-items:center;margin:0 5px} .info{margin-top:20px} .info p{margin-bottom:10px} .footer{text-align:center;margin-top:20px;color:#333} .footer a{color:#4CAF50}
     </style>
 </head>
 <body>
 
-<div class="container">
-    <h1>Calculateur de Risques de Coulée de Boue</h1>
-    <label for="rainfall">Précipitations annuelles (en mm) :</label>
-    <input type="number" id="rainfall" name="rainfall" placeholder="Précipitations annuelles" required>
+<div class="left-panel">
+    <h1>Mudslide Risk Calculator</h1>
+    <label for="rainfall">Annual Precipitation (in mm) :</label>
+    <input type="number" id="rainfall" name="rainfall" placeholder="Annual Precipitation" required>
 
-    <label for="slope">Pente du terrain (en degrés) :</label>
-    <input type="number" id="slope" name="slope" placeholder="Pente du terrain" required>
+    <label for="slope">Terrain Slope (in degrees) :</label>
+    <input type="number" id="slope" name="slope" placeholder="Terrain Slope" required>
 
-    <label for="vegetation">Type de végétation :</label>
+    <label for="vegetation">Vegetation Type :</label>
     <select id="vegetation" name="vegetation">
-        <option value="dense">Végétation dense</option>
-        <option value="moderate">Végétation modérée</option>
-        <option value="sparse">Végétation clairsemée</option>
+        <option value="dense">Dense Vegetation</option>
+        <option value="moderate">Moderate Vegetation</option>
+        <option value="sparse">Sparse Vegetation</option>
     </select>
 
-    <label for="soilType">Type de sol :</label>
+    <label for="soilType">Soil Type :</label>
     <select id="soilType" name="soilType">
-        <option value="clay">Argileux</option>
-        <option value="sandy">Sableux</option>
-        <option value="loamy">Limoneux</option>
+        <option value="clay">Clayey</option>
+        <option value="sandy">Sandy</option>
+        <option value="loamy">Loamy</option>
     </select>
 
-    <label for="intensePrecip">Événements de précipitations intenses :</label>
-    <input type="number" id="intensePrecip" name="intensePrecip" placeholder="Nombre d'événements" min="0" step="1">
+    <label for="intensePrecip">Intense Precipitation Events (in last 10 years) :</label>
+    <input type="number" id="intensePrecip" name="intensePrecip" placeholder="Number of Events" min="0" step="1">
 
-    <label for="previousLandslides">Antécédents de coulées de boue sur les dernières années :</label>
-    <input type="number" id="previousLandslides" name="previousLandslides" placeholder="Nombre d'incidents" min="0" step="1">
+    <label for="previousLandslides">Previous Mudslides (in last 10 years) :</label>
+    <input type="number" id="previousLandslides" name="previousLandslides" placeholder="Number of Incidents" min="0" step="1">
 
-    <button onclick="calculateRisk()">Estimer le Risque</button>
+    <button onclick="calculateRisk()">Estimate Risk</button>
 
     <div class="result">
         <p id="riskLevel"></p>
+        <div class="result-scale" id="resultScale"></div>
     </div>
 </div>
 
-<div class="info">
-    <h2>Définition et Explication Scientifique d'une Coulée de Boue</h2>
-    <p>Une coulée de boue est un phénomène géologique caractérisé par le déplacement rapide d'un mélange de débris rocheux, d'eau et de sédiments le long d'une pente. Elle est souvent déclenchée par des pluies intenses ou la fonte rapide de neige.</p>
+<div class="right-panel">
+    <div class="info">
+        <h2>Definition and Scientific Explanation of a Mudslide</h2>
+        <p>A mudslide is a geological phenomenon characterized by the rapid movement of a mixture of rock debris, water, and sediment down a slope. It is often triggered by intense rains or rapid snowmelt, causing soil saturation and sudden sliding.</p>
 
-    <h2>Méthode de Calcul Utilisée</h2>
-    <p>Le calcul du risque de coulée de boue est basé sur plusieurs facteurs : les précipitations annuelles, la pente du terrain, le type de végétation, le type de sol, les événements de précipitations intenses et les antécédents de coulées de boue sur une période donnée. Ces facteurs sont pondérés et évalués pour estimer le niveau de risque.</p>
+        <h2>Calculation Method Used</h2>
+        <p>The calculation of mudslide risk takes into account several factors:</p>
+        <ul>
+            <li><strong>Annual Precipitation:</strong> Measured in millimeters, influencing the amount of water available to saturate the soil.</li>
+            <li><strong>Terrain Slope:</strong> Expressed in degrees, determining the ease with which the soil can slide.</li>
+            <li><strong>Vegetation Type:</strong> Dense, moderate, or sparse, impacting water absorption and soil stability.</li>
+            <li><strong>Soil Type:</strong> Clayey, sandy, or loamy, influencing water retention and susceptibility to sliding.</li>
+            <li><strong>Intense Precipitation Events:</strong> Over a 10-year period, indicating the frequency of rains likely to trigger mudslides.</li>
+            <li><strong>Previous Mudslides:</strong> Over a 10-year period, signaling recent likelihood of such disasters.</li>
+        </ul>
 
-    <h2>Impact du Changement Climatique sur les Coulées de Boue</h2>
-    <p>Le changement climatique peut influencer les coulées de boue de plusieurs manières. L'augmentation des températures peut accélérer la fonte des glaciers et de la neige, augmentant ainsi le risque de coulées de boue. De plus, des précipitations plus intenses peuvent devenir plus fréquentes, exacerbant le phénomène des coulées de boue dans les zones sensibles. Pour en savoir plus, consultez cet <a href="https://example.com/article-changement-climatique-coulee-boue" target="_blank">article sur l'impact du changement climatique sur les coulées de boue</a>.</p>
+        <h2>Impact of Climate Change on Mudslides</h2>
+        <p>Climate change can intensify the risk of mudslides in several ways:</p>
+        <ul>
+            <li>**Increased Intense Precipitation:** Extreme weather events become more frequent, increasing the likelihood of torrential rains.</li>
+            <li>**Rapid Glacier and Snowmelt:** Rising temperatures lead to accelerated melting, increasing the volume of water available to saturate soils.</li>
+            <li>**Deforestation:** Reduction of natural vegetation decreases soil's ability to absorb water, thereby increasing the risk of landslides.</li>
+            <li>**Altered Precipitation Patterns:** Climate changes alter precipitation patterns, leading to periods of drought followed by heavy rains, fostering conditions conducive to mudslides.</li>
+        </ul>
+    </div>
 </div>
 
 <div class="footer">
-    Contactez-nous à l'adresse suivante : <a href="mailto:k.sio.p.communication@gmail.com">k.sio.p.communication@gmail.com</a>
+    Contact us at: <a href="mailto:k.sio.p.communication@gmail.com">k.sio.p.communication@gmail.com</a>
 </div>
 
 <script>
@@ -85,22 +91,38 @@ function calculateRisk() {
     const previousLandslides = parseInt(document.getElementById('previousLandslides').value) || 0;
 
     if (isNaN(rainfall) || isNaN(slope)) {
-        alert('Veuillez entrer des valeurs numériques valides.');
+        alert('Please enter valid numerical values.');
         return;
     }
 
     let riskLevel;
 
-    // Calcul du risque en fonction des critères ajoutés
+    // Mudslide risk calculation based on criteria
     if (rainfall > 800 && slope > 25 && vegetation === 'sparse' && soilType === 'clay' && intensePrecip >= 3 && previousLandslides >= 2) {
-        riskLevel = 'Très élevé';
+        riskLevel = 10;
     } else if (rainfall > 400 && slope > 15 && vegetation === 'moderate' && (soilType === 'clay' || soilType === 'loamy') && intensePrecip >= 2 && previousLandslides >= 1) {
-        riskLevel = 'Modéré à élevé';
+        riskLevel = 7;
     } else {
-        riskLevel = 'Faible à modéré';
+        riskLevel = 3;
     }
 
-    document.getElementById('riskLevel').innerHTML = `Niveau de risque : <strong>${riskLevel}</strong>`;
+    document.getElementById('riskLevel').innerHTML = `Risk Level: <strong>${riskLevel}</strong>`;
+
+    // Displaying the graphical scale
+    const resultScale = document.getElementById('resultScale');
+    resultScale.innerHTML = '';
+
+    for (let i = 1; i <= 10; i++) {
+        const scaleItem = document.createElement('div');
+        scaleItem.classList.add('scale-item');
+        if (i <= riskLevel) {
+            scaleItem.style.backgroundColor = '#FF5722'; // Color for high-risk levels
+        } else {
+            scaleItem.style.backgroundColor = '#4CAF50'; // Color for low-risk levels
+        }
+        scaleItem.textContent = i;
+        resultScale.appendChild(scaleItem);
+    }
 }
 </script>
 
