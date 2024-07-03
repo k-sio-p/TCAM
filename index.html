@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Calculateur DCF - Actualisation des Flux de Trésorerie</title>
-    <meta name="description" content="Estimez la valeur d'une entreprise en utilisant le modèle DCF (Actualisation des Flux de Trésorerie).">
-    <meta name="keywords" content="Calculateur DCF, Actualisation des Flux de Trésorerie, évaluation d'entreprise, finance, investissement">
+    <title>Calculateur d'Itinéraire</title>
+    <meta name="description" content="Calculez la distance et le temps de trajet entre deux adresses avec notre calculateur d'itinéraire.">
+    <meta name="keywords" content="Calculateur d'itinéraire, Google Maps, distance entre deux adresses, temps de trajet, trafic en temps réel">
     <meta name="author" content="Votre Nom">
-    <link rel="canonical" href="https://www.votre-site.com/calculateur-dcf">
+    <link rel="canonical" href="https://www.votre-site.com/calculateur-itineraire">
     <style>
         body { font-family: Arial, sans-serif; margin: 0; padding: 0; background-color: #f4f4f4; color: #333; }
         .wrapper { display: flex; flex-direction: column; align-items: center; width: 100%; min-height: 100vh; padding: 20px; box-sizing: border-box; }
@@ -40,24 +40,21 @@
     </div>
 
     <div class="container">
-        <h1>Calculateur DCF - Actualisation des Flux de Trésorerie</h1>
-        <label for="initialInvestment">Investissement Initial (en €):</label>
-        <input type="number" id="initialInvestment" name="initialInvestment" placeholder="100000">
+        <h1>Calculateur d'Itinéraire</h1>
+        <label for="startAddress">Adresse de départ:</label>
+        <input type="text" id="startAddress" name="startAddress" placeholder="Adresse de départ">
        
-        <label for="annualCashFlow">Flux de Trésorerie Annuel (en €):</label>
-        <input type="number" id="annualCashFlow" name="annualCashFlow" placeholder="25000">
+        <label for="endAddress">Adresse d'arrivée:</label>
+        <input type="text" id="endAddress" name="endAddress" placeholder="Adresse d'arrivée">
        
-        <label for="discountRate">Taux d'Actualisation (%):</label>
-        <input type="number" id="discountRate" name="discountRate" placeholder="10">
-       
-        <button onclick="calculateDCF()">Calculer la Valeur Actuelle</button>
+        <button onclick="calculateRoute()">Calculer l'Itinéraire</button>
        
         <div class="result">
-            <p id="presentValue"></p>
+            <p id="routeInfo"></p>
         </div>
        
         <div class="subscription">
-            <p>Pour accéder à une analyse détaillée incluant des prévisions de flux de trésorerie, abonnez-vous :</p>
+            <p>Pour accéder à des fonctionnalités avancées comme la prise en compte du trafic en temps réel, veuillez vous abonner :</p>
             <button onclick="subscribe()">S'abonner</button>
         </div>
     </div>
@@ -78,33 +75,41 @@
 </div>
 
 <script>
-function calculateDCF() {
-    const initialInvestment = parseFloat(document.getElementById('initialInvestment').value);
-    const annualCashFlow = parseFloat(document.getElementById('annualCashFlow').value);
-    const discountRate = parseFloat(document.getElementById('discountRate').value) / 100;
+function calculateRoute() {
+    const startAddress = document.getElementById('startAddress').value.trim();
+    const endAddress = document.getElementById('endAddress').value.trim();
    
-    if (isNaN(initialInvestment) || isNaN(annualCashFlow) || isNaN(discountRate)) {
-        alert('Veuillez entrer des valeurs numériques valides.');
+    if (startAddress === '' || endAddress === '') {
+        alert('Veuillez entrer les adresses de départ et d\'arrivée.');
         return;
     }
    
-    const presentValue = initialInvestment;
-    let totalPresentValue = presentValue;
-    let discountFactor = 1;
+    // Utilisation de l'API de Google Maps pour calculer l'itinéraire
+    const directionsService = new google.maps.DirectionsService();
+    const request = {
+        origin: startAddress,
+        destination: endAddress,
+        travelMode: google.maps.TravelMode.DRIVING
+    };
    
-    for (let i = 1; i <= 5; i++) {
-        discountFactor *= (1 + discountRate);
-        totalPresentValue += annualCashFlow / Math.pow(discountFactor, i);
-    }
-   
-    document.getElementById('presentValue').innerHTML = `La valeur actuelle estimée est <strong>${totalPresentValue.toFixed(2)} €</strong>`;
+    directionsService.route(request, function(response, status) {
+        if (status === 'OK') {
+            const route = response.routes[0];
+            const routeInfo = `Distance: ${route.legs[0].distance.text}, Temps de trajet: ${route.legs[0].duration.text}`;
+            document.getElementById('routeInfo').innerHTML = routeInfo;
+        } else {
+            alert('Erreur de calcul de l\'itinéraire: ' + status);
+        }
+    });
 }
 
 function subscribe() {
-    alert('Pour accéder à une analyse détaillée incluant des prévisions de flux de trésorerie, veuillez vous abonner.');
+    alert('Pour accéder à des fonctionnalités avancées comme la prise en compte du trafic en temps réel, veuillez vous abonner.');
     // Ici, vous pouvez ajouter la logique d'abonnement réelle, par exemple, rediriger vers une page d'abonnement.
 }
 </script>
+<!-- Chargement de l'API de Google Maps -->
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap"></script>
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2168083320114212" crossorigin="anonymous"></script>
 </body>
 </html>
