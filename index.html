@@ -3,70 +3,45 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Calculateur d'Itinéraire</title>
-    <meta name="description" content="Calculez la distance et le temps de trajet entre deux adresses avec notre calculateur d'itinéraire.">
-    <meta name="keywords" content="Calculateur d'itinéraire, Google Maps, distance entre deux adresses, temps de trajet, trafic en temps réel">
+    <title>Calculateur de Risques de Coulée de Boue</title>
+    <meta name="description" content="Estimez le risque de coulée de boue dans une zone donnée avec notre calculateur de risques.">
+    <meta name="keywords" content="Calculateur de risques de coulée de boue, estimation de risques, prévention des catastrophes naturelles">
     <meta name="author" content="Votre Nom">
-    <link rel="canonical" href="https://www.votre-site.com/calculateur-itineraire">
+    <link rel="canonical" href="https://www.votre-site.com/calculateur-risques-coulee-boue">
     <style>
         body { font-family: Arial, sans-serif; margin: 0; padding: 0; background-color: #f4f4f4; color: #333; }
-        .wrapper { display: flex; flex-direction: column; align-items: center; width: 100%; min-height: 100vh; padding: 20px; box-sizing: border-box; }
-        .ad { width: 350px; background-color: #fff; border: 1px solid #ccc; margin: 10px; padding: 10px; box-sizing: border-box; min-height: 950px; text-align: center; }
-        .container { display: flex; flex-direction: column; align-items: center; width: 100%; max-width: 800px; padding: 20px; border: 1px solid #ccc; border-radius: 10px; background-color: #fff; box-shadow: 2px 2px 12px #aaa; box-sizing: border-box; }
+        .container { max-width: 600px; margin: 20px auto; padding: 20px; background-color: #fff; border: 1px solid #ccc; border-radius: 10px; box-shadow: 2px 2px 12px #aaa; }
         h1 { color: #007BFF; text-align: center; }
-        input, button { margin: 10px 0; padding: 10px; width: 100%; box-sizing: border-box; border: 1px solid #ccc; border-radius: 5px; }
+        label { display: block; margin-top: 10px; }
+        input, select, button { width: calc(100% - 20px); padding: 10px; margin-top: 5px; border: 1px solid #ccc; border-radius: 5px; box-sizing: border-box; }
         button { background-color: #4CAF50; color: white; border: none; cursor: pointer; transition: background-color 0.3s ease; }
         button:hover { background-color: #45a049; }
         .result { margin-top: 20px; text-align: center; }
-        .subscription { margin-top: 30px; text-align: center; }
-        .subscription p { margin-bottom: 10px; }
-        .subscription button { background-color: #007BFF; }
         .footer { text-align: center; margin-top: 20px; color: #007BFF; }
         .footer a { color: #4CAF50; }
-        @media (min-width: 768px) { .wrapper { flex-direction: row; justify-content: space-between; } .container { margin: 0 20px; } }
     </style>
 </head>
 <body>
 
-<div class="wrapper">
-    <div class="ad left">
-        <!-- Publicité à gauche -->
-        <ins class="adsbygoogle"
-             style="display:block"
-             data-ad-client="ca-pub-2168083320114212"
-             data-ad-slot="XXXXXXX"
-             data-ad-format="rectangle"
-             alt="Publicité gauche"></ins>
-    </div>
+<div class="container">
+    <h1>Calculateur de Risques de Coulée de Boue</h1>
+    <label for="rainfall">Précipitations annuelles (en mm) :</label>
+    <input type="number" id="rainfall" name="rainfall" placeholder="Précipitations annuelles" required>
 
-    <div class="container">
-        <h1>Calculateur d'Itinéraire</h1>
-        <label for="startAddress">Adresse de départ:</label>
-        <input type="text" id="startAddress" name="startAddress" placeholder="Adresse de départ">
-       
-        <label for="endAddress">Adresse d'arrivée:</label>
-        <input type="text" id="endAddress" name="endAddress" placeholder="Adresse d'arrivée">
-       
-        <button onclick="calculateRoute()">Calculer l'Itinéraire</button>
-       
-        <div class="result">
-            <p id="routeInfo"></p>
-        </div>
-       
-        <div class="subscription">
-            <p>Pour accéder à des fonctionnalités avancées comme la prise en compte du trafic en temps réel, veuillez vous abonner :</p>
-            <button onclick="subscribe()">S'abonner</button>
-        </div>
-    </div>
+    <label for="slope">Pente du terrain (en degrés) :</label>
+    <input type="number" id="slope" name="slope" placeholder="Pente du terrain" required>
 
-    <div class="ad right">
-        <!-- Publicité à droite -->
-        <ins class="adsbygoogle"
-             style="display:block"
-             data-ad-client="ca-pub-2168083320114212"
-             data-ad-slot="XXXXXXX"
-             data-ad-format="rectangle"
-             alt="Publicité droite"></ins>
+    <label for="vegetation">Type de végétation :</label>
+    <select id="vegetation" name="vegetation">
+        <option value="dense">Végétation dense</option>
+        <option value="moderate">Végétation modérée</option>
+        <option value="sparse">Végétation clairsemée</option>
+    </select>
+
+    <button onclick="calculateRisk()">Estimer le Risque</button>
+
+    <div class="result">
+        <p id="riskLevel"></p>
     </div>
 </div>
 
@@ -75,41 +50,29 @@
 </div>
 
 <script>
-function calculateRoute() {
-    const startAddress = document.getElementById('startAddress').value.trim();
-    const endAddress = document.getElementById('endAddress').value.trim();
-   
-    if (startAddress === '' || endAddress === '') {
-        alert('Veuillez entrer les adresses de départ et d\'arrivée.');
+function calculateRisk() {
+    const rainfall = parseFloat(document.getElementById('rainfall').value);
+    const slope = parseFloat(document.getElementById('slope').value);
+    const vegetation = document.getElementById('vegetation').value;
+
+    if (isNaN(rainfall) || isNaN(slope)) {
+        alert('Veuillez entrer des valeurs numériques valides.');
         return;
     }
-   
-    // Utilisation de l'API de Google Maps pour calculer l'itinéraire
-    const directionsService = new google.maps.DirectionsService();
-    const request = {
-        origin: startAddress,
-        destination: endAddress,
-        travelMode: google.maps.TravelMode.DRIVING
-    };
-   
-    directionsService.route(request, function(response, status) {
-        if (status === 'OK') {
-            const route = response.routes[0];
-            const routeInfo = `Distance: ${route.legs[0].distance.text}, Temps de trajet: ${route.legs[0].duration.text}`;
-            document.getElementById('routeInfo').innerHTML = routeInfo;
-        } else {
-            alert('Erreur de calcul de l\'itinéraire: ' + status);
-        }
-    });
-}
 
-function subscribe() {
-    alert('Pour accéder à des fonctionnalités avancées comme la prise en compte du trafic en temps réel, veuillez vous abonner.');
-    // Ici, vous pouvez ajouter la logique d'abonnement réelle, par exemple, rediriger vers une page d'abonnement.
+    let riskLevel;
+
+    // Calcul du risque amélioré
+    if (rainfall > 800 && slope > 25 && vegetation === 'sparse') {
+        riskLevel = 'Très élevé';
+    } else if (rainfall > 400 && slope > 15 && vegetation === 'moderate') {
+        riskLevel = 'Modéré à élevé';
+    } else {
+        riskLevel = 'Faible à modéré';
+    }
+
+    document.getElementById('riskLevel').innerHTML = `Niveau de risque : <strong>${riskLevel}</strong>`;
 }
 </script>
-<!-- Chargement de l'API de Google Maps -->
-<script async defer src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap"></script>
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2168083320114212" crossorigin="anonymous"></script>
 </body>
 </html>
