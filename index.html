@@ -38,6 +38,19 @@
         <option value="sparse">Végétation clairsemée</option>
     </select>
 
+    <label for="soilType">Type de sol :</label>
+    <select id="soilType" name="soilType">
+        <option value="clay">Argileux</option>
+        <option value="sandy">Sableux</option>
+        <option value="loamy">Limoneux</option>
+    </select>
+
+    <label for="intensePrecip">Événements de précipitations intenses :</label>
+    <input type="number" id="intensePrecip" name="intensePrecip" placeholder="Nombre d'événements" min="0" step="1">
+
+    <label for="previousLandslides">Antécédents de coulées de boue :</label>
+    <input type="number" id="previousLandslides" name="previousLandslides" placeholder="Nombre d'incidents" min="0" step="1">
+
     <button onclick="calculateRisk()">Estimer le Risque</button>
 
     <div class="result">
@@ -54,6 +67,9 @@ function calculateRisk() {
     const rainfall = parseFloat(document.getElementById('rainfall').value);
     const slope = parseFloat(document.getElementById('slope').value);
     const vegetation = document.getElementById('vegetation').value;
+    const soilType = document.getElementById('soilType').value;
+    const intensePrecip = parseInt(document.getElementById('intensePrecip').value) || 0;
+    const previousLandslides = parseInt(document.getElementById('previousLandslides').value) || 0;
 
     if (isNaN(rainfall) || isNaN(slope)) {
         alert('Veuillez entrer des valeurs numériques valides.');
@@ -62,10 +78,10 @@ function calculateRisk() {
 
     let riskLevel;
 
-    // Calcul du risque amélioré
-    if (rainfall > 800 && slope > 25 && vegetation === 'sparse') {
+    // Calcul du risque en fonction des critères ajoutés
+    if (rainfall > 800 && slope > 25 && vegetation === 'sparse' && soilType === 'clay' && intensePrecip >= 3 && previousLandslides >= 2) {
         riskLevel = 'Très élevé';
-    } else if (rainfall > 400 && slope > 15 && vegetation === 'moderate') {
+    } else if (rainfall > 400 && slope > 15 && vegetation === 'moderate' && (soilType === 'clay' || soilType === 'loamy') && intensePrecip >= 2 && previousLandslides >= 1) {
         riskLevel = 'Modéré à élevé';
     } else {
         riskLevel = 'Faible à modéré';
