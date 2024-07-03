@@ -114,48 +114,29 @@
             margin-bottom: 10px;
         }
 
+        .error-message {
+            color: red;
+            margin-top: 5px;
+            font-size: 14px;
+        }
+
         .footer {
             text-align: center;
             margin-top: 20px;
             color: #555;
         }
 
-        .footer a {
-            color: #4CAF50;
-            text-decoration: none;
-        }
-
-        .footer a:hover {
-            text-decoration: underline;
-        }
-
-        /* Style pour l'image et le lien sur les côtés */
-        .side-content {
-            display: flex;
-            justify-content: space-between;
-            margin-top: 20px;
-        }
-
-        .side-content img {
-            max-width: 40%;
-            height: auto;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.2);
-        }
-
-        .side-content a {
-            width: 40%;
-            padding: 10px;
+        .footer button {
             background-color: #4CAF50;
             color: #fff;
-            text-align: center;
-            text-decoration: none;
+            border: none;
+            cursor: pointer;
+            padding: 10px 20px;
             border-radius: 5px;
-            font-size: 16px;
             transition: background-color .3s ease;
         }
 
-        .side-content a:hover {
+        .footer button:hover {
             background-color: #45a049;
         }
     </style>
@@ -191,15 +172,12 @@
         <label for="previousLandslides">Previous Mudslides (last 10 years):</label>
         <input type="number" id="previousLandslides" name="previousLandslides" placeholder="Number of Incidents" min="0" step="1">
 
-        <label for="wildfire">Wildfire Impact (last 10 years):</label>
-        <select id="wildfire" name="wildfire">
-            <option value="none">None</option>
-            <option value="low">Low</option>
-            <option value="medium">Medium</option>
-            <option value="high">High</option>
-        </select>
+        <label>Contact us for more information:</label>
+        <div class="footer">
+            <button onclick="openEmailClient()">Contact via Email</button>
+        </div>
 
-        <button onclick="calculateRisk()">Estimate Risk</button>
+        <button onclick="validateAndCalculate()">Estimate Risk</button>
 
         <div class="result">
             <p id="riskLevel"></p>
@@ -221,7 +199,7 @@
                 <li><strong>Soil Type:</strong> Clayey, sandy, or loamy, influencing water retention and susceptibility to sliding.</li>
                 <li><strong>Intense Precipitation Events:</strong> Over a 10-year period, indicating the frequency of rains likely to trigger mudslides.</li>
                 <li><strong>Previous Mudslides:</strong> Over a 10-year period, signaling recent likelihood of such disasters.</li>
-                <li><strong>Wildfire Impact:</strong> The impact of wildfires in the last 10 years, affecting the landscape's vulnerability to mudslides during heavy rains. Options range from "None" to "High".</li>
+                <li><strong>Contact Us:</strong> Click the button above to contact us for more information.</li>
             </ul>
 
             <h2>Impact of Climate Change on Mudslides</h2>
@@ -235,41 +213,58 @@
             </ul>
         </div>
     </div>
-
-    <div class="side-content">
-        <!-- Placeholder for an image -->
-        <img src="placeholder.jpg" alt="Placeholder Image">
-
-        <!-- Placeholder for a link -->
-        <a href="#">Learn More</a>
-    </div>
-
-    <div class="footer">
-        Contact us at: <a href="mailto:k.sio.p.communication@gmail.com">k.sio.p.communication@gmail.com</a>
-    </div>
 </div>
 
 <script>
-function calculateRisk() {
+function validateAndCalculate() {
     const rainfall = parseFloat(document.getElementById('rainfall').value);
     const slope = parseFloat(document.getElementById('slope').value);
     const vegetation = document.getElementById('vegetation').value;
     const soilType = document.getElementById('soilType').value;
     const intensePrecip = parseInt(document.getElementById('intensePrecip').value) || 0;
     const previousLandslides = parseInt(document.getElementById('previousLandslides').value) || 0;
-    const wildfireImpact = document.getElementById('wildfire').value;
 
-    if (isNaN(rainfall) || isNaN(slope)) {
-        alert('Please enter valid numerical values.');
+    let errorMessage = '';
+
+    if (isNaN(rainfall) || rainfall <= 0) {
+        errorMessage += 'Please enter a valid positive number for Annual Precipitation.\n';
+    }
+
+    if (isNaN(slope) || slope <= 0 || slope > 90) {
+        errorMessage += 'Please enter a valid number between 0 and 90 for Terrain Slope.\n';
+    }
+
+    if (vegetation !== 'dense' && vegetation !== 'moderate' && vegetation !== 'sparse') {
+        errorMessage += 'Please select a valid option for Vegetation Type.\n';
+    }
+
+    if (soilType !== 'clay' && soilType !== 'sandy' && soilType !== 'loamy') {
+        errorMessage += 'Please select a valid option for Soil Type.\n';
+    }
+
+    if (intensePrecip < 0) {
+        errorMessage += 'Please enter a valid non-negative number for Intense Precipitation Events.\n';
+    }
+
+    if (previousLandslides < 0) {
+        errorMessage += 'Please enter a valid non-negative number for Previous Mudslides.\n';
+    }
+
+    if (errorMessage !== '') {
+        alert(errorMessage);
         return;
     }
 
+    calculateRisk(rainfall, slope, vegetation, soilType, intensePrecip, previousLandslides);
+}
+
+function calculateRisk(rainfall, slope, vegetation, soilType, intensePrecip, previousLandslides) {
     let riskLevel;
 
     // Mudslide risk calculation based on criteria
-    if (rainfall > 800 && slope > 25 && vegetation === 'sparse' && soilType === 'clay' && intensePrecip >= 3 && previousLandslides >= 2 && wildfireImpact === 'high') {
+    if (rainfall > 800 && slope > 25 && vegetation === 'sparse' && soilType === 'clay' && intensePrecip >= 3 && previousLandslides >= 2) {
         riskLevel = 10;
-    } else if (rainfall > 400 && slope > 15 && vegetation === 'moderate' && (soilType === 'clay' || soilType === 'loamy') && intensePrecip >= 2 && previousLandslides >= 1 && (wildfireImpact === 'medium' || wildfireImpact === 'high')) {
+    } else if (rainfall > 400 && slope > 15 && vegetation === 'moderate' && (soilType === 'clay' || soilType === 'loamy') && intensePrecip >= 2 && previousLandslides >= 1) {
         riskLevel = 7;
     } else {
         riskLevel = 3;
@@ -292,6 +287,15 @@ function calculateRisk() {
         scaleItem.textContent = i;
         resultScale.appendChild(scaleItem);
     }
+}
+
+function openEmailClient() {
+    const email = 'k.sio.p.communication@gmail.com';
+    const subject = 'Request for Information';
+    const body = 'Dear Mudslide Risk Team,\n\nI would like to inquire about the mudslide risk assessment.\n\nThank you.\n';
+
+    const mailtoLink = `mailto:${email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    window.location.href = mailtoLink;
 }
 </script>
 
