@@ -1,32 +1,114 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr">
 <head>
-    <title>Tableau de Bord en Temps Réel</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.min.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculateur de TCAM - Taux de Croissance Annuel Moyen</title>
+    <meta name="description" content="Utilisez notre calculateur de TCAM pour déterminer le taux de croissance annuel moyen de vos investissements sur une période donnée. Simple et rapide.">
+    <meta name="keywords" content="Calculateur TCAM, Taux de Croissance Annuel Moyen, investissement, croissance, finance">
+    <meta name="author" content="Votre Nom">
+    <link rel="canonical" href="https://www.votre-site.com/calculateur-tcam">
+    <style>
+        body { font-family: Arial, sans-serif; margin: 0; padding: 0; background-color: #f4f4f4; color: #333; }
+        .wrapper { display: flex; flex-direction: column; align-items: center; width: 100%; min-height: 100vh; padding: 20px; box-sizing: border-box; }
+        .ad { width: 350px; background-color: #fff; border: 1px solid #ccc; margin: 10px; padding: 10px; box-sizing: border-box; min-height: 950px; text-align: center; }
+        .container { display: flex; flex-direction: column; align-items: center; width: 100%; max-width: 600px; padding: 20px; border: 1px solid #ccc; border-radius: 10px; background-color: #fff; box-shadow: 2px 2px 12px #aaa; box-sizing: border-box; }
+        h1 { color: #007BFF; }
+        input, button { margin: 10px 0; padding: 10px; width: 100%; box-sizing: border-box; border: 1px solid #ccc; border-radius: 5px; }
+        button { background-color: #4CAF50; color: white; border: none; cursor: pointer; transition: background-color 0.3s ease; }
+        button:hover { background-color: #45a049; }
+        .definition { margin-top: 30px; text-align: left; width: 100%; }
+        .definition h2, .definition h3 { color: #007BFF; }
+        .footer { text-align: center; margin-top: 20px; color: #007BFF; }
+        .footer a { color: #4CAF50; }
+        @media (min-width: 768px) { .wrapper { flex-direction: row; justify-content: space-between; } .container { margin: 0 20px; } }
+    </style>
 </head>
 <body>
-    <h1>Tableau de Bord en Temps Réel</h1>
-    <div id="weather">
-        <h2>Météo Actuelle</h2>
-        <p id="temperature"></p>
-        <p id="conditions"></p>
-    </div>
-    <div id="water-level">
-        <h2>Niveau de l'Eau Actuel</h2>
-        <p id="water-level-value"></p>
-    </div>
-    <script>
-        var socket = io();
-        socket.on('update_data', function(data) {
-            var weather = data.weather;
-            var water_level = data.water_level;
 
-            document.getElementById('temperature').innerText = 'Température : ' + (weather.main.temp - 273.15).toFixed(2) + '°C';
-            document.getElementById('conditions').innerText = 'Conditions : ' + weather.weather[0].description;
+<div class="wrapper">
+    <div class="ad left">
+        <!-- Publicité à gauche -->
+        <ins class="adsbygoogle"
+             style="display:block"
+             data-ad-client="ca-pub-2168083320114212"
+             data-ad-slot="XXXXXXX"
+             data-ad-format="rectangle"
+             alt="Publicité gauche"></ins>
+    </div>
 
-            var water_level_value = water_level.value.timeSeries[0].values[0].value[0].value;
-            document.getElementById('water-level-value').innerText = 'Niveau de l\'eau : ' + water_level_value + ' pieds';
-        });
-    </script>
+    <div class="container">
+        <h1 style="text-align: center;">Calculateur du Taux de Croissance Annuel Moyen (TCAM)</h1>
+        <label for="startYear">Année de départ:</label>
+        <input type="number" id="startYear" name="startYear">
+       
+        <label for="startValue">Donnée de départ:</label>
+        <input type="number" id="startValue" name="startValue">
+       
+        <label for="endYear">Année de fin:</label>
+        <input type="number" id="endYear" name="endYear">
+       
+        <label for="endValue">Donnée de fin:</label>
+        <input type="number" id="endValue" name="endValue">
+       
+        <button onclick="calculateCAGR()">Calculer le TCAM</button>
+       
+        <p id="result"></p>
+       
+        <div class="definition">
+            <h2>Définition du TCAM</h2>
+            <p>Le Taux de Croissance Annuel Moyen (TCAM) est une mesure utilisée pour déterminer la moyenne annuelle de croissance d'un investissement sur une période donnée. Il lisse les fluctuations de croissance sur plusieurs années pour fournir une image plus précise du taux de croissance moyen.</p>
+            <h3>Méthode de calcul du TCAM</h3>
+            <p>Pour calculer le TCAM, nous utilisons la formule suivante :</p>
+            <p><strong>TCAM = [(Valeur finale / Valeur initiale) ^ (1 / Nombre d'années)] - 1</strong></p>
+            <p>Où :</p>
+            <ul>
+                <li><strong>Valeur initiale</strong> est la valeur de départ de l'investissement.</li>
+                <li><strong>Valeur finale</strong> est la valeur de fin de l'investissement.</li>
+                <li><strong>Nombre d'années</strong> est la durée de l'investissement en années.</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="ad right">
+        <!-- Publicité à droite -->
+        <ins class="adsbygoogle"
+             style="display:block"
+             data-ad-client="ca-pub-2168083320114212"
+             data-ad-slot="XXXXXXX"
+             data-ad-format="rectangle"
+             alt="Publicité droite"></ins>
+    </div>
+</div>
+
+<div class="footer">
+    Vous souhaitez afficher votre annonce ? Contactez <a href="mailto:k.sio.p.communication@gmail.com">k.sio.p.communication@gmail.com</a>
+</div>
+
+<script>
+function calculateCAGR() {
+    const startYear = parseFloat(document.getElementById('startYear').value);
+    const startValue = parseFloat(document.getElementById('startValue').value);
+    const endYear = parseFloat(document.getElementById('endYear').value);
+    const endValue = parseFloat(document.getElementById('endValue').value);
+   
+    if (isNaN(startYear) || isNaN(startValue) || isNaN(endYear) || isNaN(endValue)) {
+        alert('Veuillez entrer des valeurs numériques valides.');
+        return;
+    }
+   
+    if (startYear >= endYear) {
+        alert('L\'année de départ doit être inférieure à l\'année de fin.');
+        return;
+    }
+   
+    const numYears = endYear - startYear;
+   
+    const cagr = Math.pow((endValue / startValue), (1 / numYears)) - 1;
+   
+    document.getElementById('result').innerHTML = `Le TCAM est de <strong>${(cagr * 100).toFixed(2)}%</strong>`;
+}
+</script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2168083320114212" crossorigin="anonymous"></script>
 </body>
 </html>
