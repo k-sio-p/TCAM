@@ -9,15 +9,24 @@
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            min-height: 100vh;
+            background-color: #f0f0f0;
         }
         .container {
             max-width: 600px;
-            margin: auto;
+            width: 100%;
             padding: 20px;
             border: 1px solid #ccc;
             border-radius: 10px;
+            background-color: white;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
         }
-        h1 {
+        h1, h2 {
             text-align: center;
         }
         label {
@@ -25,9 +34,10 @@
             margin-top: 10px;
         }
         input[type="number"] {
-            width: 100%;
+            width: calc(50% - 10px);
             padding: 10px;
             margin-top: 5px;
+            display: inline-block;
         }
         button {
             display: block;
@@ -45,6 +55,14 @@
             background-color: #f8f9fa;
             border: 1px solid #ccc;
             border-radius: 5px;
+        }
+        .explanation {
+            max-width: 600px;
+            padding: 20px;
+            background-color: white;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
     </style>
 </head>
@@ -77,6 +95,62 @@
         <div class="result" id="result">
             <!-- Les résultats seront affichés ici -->
         </div>
+    </div>
+
+    <div class="explanation">
+        <h2>Explication des Calculs</h2>
+        <p><strong>1. Calcul de la Puissance (en kW)</strong></p>
+        <p>
+            La puissance générée par l'eau qui tombe dans un barrage hydraulique est calculée à l'aide de la formule suivante :
+            <br>
+            <code>P = ρ × g × Q × H × η</code>
+            <br>
+            Où :
+            <ul>
+                <li>ρ : Densité de l'eau (1000 kg/m³)</li>
+                <li>g : Accélération due à la gravité (9.81 m/s²)</li>
+                <li>Q : Débit d'eau (en m³/s)</li>
+                <li>H : Hauteur de chute (en mètres)</li>
+                <li>η : Efficacité du système (en décimal, par exemple 90% devient 0.90)</li>
+            </ul>
+            Pour convertir la puissance en kilowatts (kW), on divise par 1000 :
+            <br>
+            <code>Puissance = (ρ × g × Q × H × η) / 1000</code>
+        </p>
+        <p><strong>2. Calcul de l'Énergie Produite Annuelle (en kWh)</strong></p>
+        <p>
+            L'énergie produite annuellement est calculée en multipliant la puissance par le nombre total d'heures dans une année :
+            <br>
+            <code>Énergie Produite Annuelle = Puissance × 24 × 365</code>
+        </p>
+        <p><strong>3. Calcul des Revenus Annuels</strong></p>
+        <p>
+            Les revenus annuels sont calculés en multipliant l'énergie produite annuellement par le prix de vente de l'électricité (en €/kWh) :
+            <br>
+            <code>Revenus Annuels = Énergie Produite Annuelle × Prix de Vente</code>
+        </p>
+        <p><strong>4. Calcul des Coûts Annuels</strong></p>
+        <p>
+            Les coûts annuels incluent principalement les coûts de maintenance :
+            <br>
+            <code>Coûts Annuels = Coût de Maintenance Annuel × 1,000,000</code>
+        </p>
+        <p><strong>5. Calcul de la Rentabilité Financière Annuelle</strong></p>
+        <p>
+            La rentabilité financière annuelle est calculée en soustrayant les coûts annuels des revenus annuels :
+            <br>
+            <code>Rentabilité Annuelle = Revenus Annuels - Coûts Annuels</code>
+        </p>
+        <p><strong>6. Calcul du Retour sur Investissement (ROI)</strong></p>
+        <p>
+            Le retour sur investissement (ROI) sur la durée d'amortissement est calculé en soustrayant les coûts totaux des revenus totaux sur la période d'amortissement :
+            <br>
+            <code>Total Revenus = Revenus Annuels × Durée d'Amortissement</code>
+            <br>
+            <code>Total Coûts = (Coût de Construction × 1,000,000) + (Coûts Annuels × Durée d'Amortissement)</code>
+            <br>
+            <code>ROI = Total Revenus - Total Coûts</code>
+        </p>
     </div>
 
     <script>
