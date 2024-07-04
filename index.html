@@ -1,311 +1,126 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mudslide Risk Calculator</title>
-    <meta name="description" content="Estimate the risk of mudslides in a given area with our risk calculator.">
-    <meta name="keywords" content="Mudslide risk calculator, risk estimation, natural disaster prevention">
-    <meta name="author" content="Your Name">
-    <link rel="canonical" href="https://www.your-website.com/mudslide-risk-calculator">
+    <title>Calcul de Rentabilité d'un Barrage Hydraulique</title>
     <style>
-        /* Reset and base styles */
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #f2f2f2;
-            color: #333;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
-            min-height: 100vh;
+            font-family: Arial, sans-serif;
             margin: 0;
-            padding: 0;
-        }
-
-        .container {
-            width: 90%;
-            max-width: 600px;
-            margin: 20px 0;
-            background-color: #fff;
             padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 0 15px rgba(0,0,0,0.1);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
         }
-
-        h1, h2 {
-            color: #333;
+        .container {
+            max-width: 600px;
+            margin: auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+        }
+        h1 {
             text-align: center;
-            margin-bottom: 20px;
         }
-
         label {
             display: block;
             margin-top: 10px;
-            font-weight: bold;
         }
-
-        input, select, button {
-            width: calc(100% - 20px);
-            padding: 12px;
-            margin-top: 8px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            font-size: 16px;
+        input[type="number"] {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
         }
-
         button {
-            background-color: #4CAF50;
-            color: #fff;
+            display: block;
+            width: 100%;
+            padding: 10px;
+            margin-top: 20px;
+            background-color: #28a745;
+            color: white;
             border: none;
-            cursor: pointer;
-            transition: background-color .3s ease;
+            border-radius: 5px;
         }
-
-        button:hover {
-            background-color: #45a049;
-        }
-
         .result {
             margin-top: 20px;
-            text-align: center;
-        }
-
-        .scale {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin-top: 20px;
-            border-top: 1px solid #ccc;
-            padding-top: 10px;
-        }
-
-        .scale-item {
-            width: 32px;
-            height: 32px;
-            background-color: #4CAF50;
-            color: #fff;
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin: 0 8px;
-            font-weight: bold;
-            font-size: 14px;
-        }
-
-        .info {
-            margin-top: 20px;
-            text-align: justify;
-        }
-
-        .info p {
-            margin-bottom: 10px;
-        }
-
-        .footer {
-            text-align: center;
-            margin-top: 20px;
-            color: #555;
-        }
-
-        .footer a {
-            color: #4CAF50;
-            text-decoration: none;
-        }
-
-        .footer a:hover {
-            text-decoration: underline;
-        }
-
-        .error-message {
-            color: red;
-            font-size: 14px;
-            margin-top: 5px;
+            padding: 10px;
+            background-color: #f8f9fa;
+            border: 1px solid #ccc;
+            border-radius: 5px;
         }
     </style>
 </head>
 <body>
+    <div class="container">
+        <h1>Calcul de Rentabilité d'un Barrage Hydraulique</h1>
+        <label for="debit">Débit d'eau (en m³/s)</label>
+        <input type="number" id="debit" placeholder="Entrez le débit d'eau">
 
-<div class="container">
-    <h1>Mudslide Risk Calculator</h1>
-    <label for="rainfall">Annual Precipitation (in mm):</label>
-    <input type="number" id="rainfall" name="rainfall" placeholder="Enter Annual Precipitation" required>
+        <label for="hauteur">Hauteur de chute (en mètres)</label>
+        <input type="number" id="hauteur" placeholder="Entrez la hauteur de chute">
 
-    <label for="slope">Terrain Slope (in degrees):</label>
-    <input type="number" id="slope" name="slope" placeholder="Enter Terrain Slope" required>
+        <label for="efficacite">Efficacité du système (%)</label>
+        <input type="number" id="efficacite" step="0.1" placeholder="Entrez l'efficacité du système">
 
-    <label for="vegetation">Vegetation Type:</label>
-    <select id="vegetation" name="vegetation">
-        <option value="dense">Dense Vegetation</option>
-        <option value="moderate">Moderate Vegetation</option>
-        <option value="sparse">Sparse Vegetation</option>
-    </select>
+        <label for="prix_vente">Prix de vente de l'électricité (€/kWh)</label>
+        <input type="number" id="prix_vente" step="0.01" placeholder="Entrez le prix de vente de l'électricité">
 
-    <label for="soilType">Soil Type:</label>
-    <select id="soilType" name="soilType">
-        <option value="clay">Clayey</option>
-        <option value="sandy">Sandy</option>
-        <option value="loamy">Loamy</option>
-    </select>
+        <label for="cout_construction">Coût de construction (en millions d'euros)</label>
+        <input type="number" id="cout_construction" step="0.01" placeholder="Entrez le coût de construction">
 
-    <button onclick="calculateRisk()">Estimate Risk</button>
+        <label for="cout_maintenance">Coût de maintenance annuel (en millions d'euros)</label>
+        <input type="number" id="cout_maintenance" step="0.01" placeholder="Entrez le coût de maintenance annuel">
 
-    <div class="result">
-        <p id="riskLevel"></p>
+        <label for="duree_amortissement">Durée d'amortissement (en années)</label>
+        <input type="number" id="duree_amortissement" placeholder="Entrez la durée d'amortissement">
+
+        <button onclick="calculerRentabilite()">Calculer</button>
+
+        <div class="result" id="result">
+            <!-- Les résultats seront affichés ici -->
+        </div>
     </div>
 
-    <div class="scale" id="scale">
-        <!-- Scale will be dynamically generated here -->
-    </div>
-</div>
+    <script>
+        function calculerRentabilite() {
+            const debit = document.getElementById('debit').value;
+            const hauteur = document.getElementById('hauteur').value;
+            const efficacite = document.getElementById('efficacite').value;
+            const prix_vente = document.getElementById('prix_vente').value;
+            const cout_construction = document.getElementById('cout_construction').value;
+            const cout_maintenance = document.getElementById('cout_maintenance').value;
+            const duree_amortissement = document.getElementById('duree_amortissement').value;
 
-<div class="container">
-    <div class="info">
-        <h2>Definition and Scientific Explanation of a Mudslide</h2>
-        <p>A mudslide is a geological phenomenon characterized by the rapid movement of a mixture of rock debris, water, and sediment down a slope. It is often triggered by intense rains or rapid snowmelt, causing soil saturation and sudden sliding.</p>
+            // Calcul de la puissance (en kW) : P = ρ * g * Q * H * η
+            const densite_eau = 1000; // en kg/m³
+            const gravite = 9.81; // en m/s²
+            const efficacite_decimale = efficacite / 100; // Convertir en décimal
+            const puissance = densite_eau * gravite * debit * hauteur * efficacite_decimale / 1000; // en kW
 
-        <h2>Calculation Method Used</h2>
-        <p>The calculation of mudslide risk takes into account several factors:</p>
-        <ul>
-            <li><strong>Annual Precipitation:</strong> Measured in millimeters, influencing the amount of water available to saturate the soil.</li>
-            <li><strong>Terrain Slope:</strong> Expressed in degrees, determining the ease with which the soil can slide.</li>
-            <li><strong>Vegetation Type:</strong> Dense, moderate, or sparse, impacting water absorption and soil stability.</li>
-            <li><strong>Soil Type:</strong> Clayey, sandy, or loamy, influencing water retention and susceptibility to sliding.</li>
-        </ul>
+            // Calcul de l'énergie produite annuellement (en kWh)
+            const energieProduiteAnnuelle = puissance * 24 * 365; // en kWh
 
-        <h2>Impact of Climate Change on Mudslides</h2>
-        <p>Climate change can intensify the risk of mudslides in several ways:</p>
-        <ul>
-            <li>Increased Intense Precipitation: Extreme weather events become more frequent, increasing the likelihood of torrential rains.</li>
-            <li>Rapid Glacier and Snowmelt: Rising temperatures lead to accelerated melting, increasing the volume of water available to saturate soils.</li>
-            <li>Deforestation: Reduction of natural vegetation decreases soil's ability to absorb water, thereby increasing the risk of landslides.</li>
-            <li>Altered Precipitation Patterns: Climate changes alter precipitation patterns, leading to periods of drought followed by heavy rains, fostering conditions conducive to mudslides.</li>
-        </ul>
-    </div>
-</div>
+            // Calcul des revenus annuels
+            const revenusAnnuels = energieProduiteAnnuelle * prix_vente;
 
-<div class="container">
-    <button onclick="contact()">Contact</button>
-</div>
+            // Calcul des coûts annuels
+            const coutsAnnuels = cout_maintenance * 1000000;
 
-<script>
-function calculateRisk() {
-    const rainfall = parseFloat(document.getElementById('rainfall').value);
-    const slope = parseFloat(document.getElementById('slope').value);
-    const vegetation = document.getElementById('vegetation').value;
-    const soilType = document.getElementById('soilType').value;
+            // Calcul de la rentabilité financière annuelle
+            const rentabiliteAnnuelle = revenusAnnuels - coutsAnnuels;
 
-    // Validation des entrées
-    if (isNaN(rainfall) || isNaN(slope)) {
-        showError("Please enter valid numerical values for Annual Precipitation and Terrain Slope.");
-        return;
-    }
+            // Calcul du retour sur investissement (ROI) sur la durée d'amortissement
+            const totalRevenus = revenusAnnuels * duree_amortissement;
+            const totalCouts = (cout_construction * 1000000) + (coutsAnnuels * duree_amortissement);
+            const roi = totalRevenus - totalCouts;
 
-    // Attribuer des points en fonction de chaque critère
-    let riskScore = 0;
-
-    // Points pour les précipitations
-    if (rainfall > 1000) {
-        riskScore += 3;
-    } else if (rainfall > 600) {
-        riskScore += 2;
-    } else if (rainfall > 300) {
-        riskScore += 1;
-    }
-
-    // Points pour la pente du terrain
-    if (slope > 25) {
-        riskScore += 3;
-    } else if (slope > 15) {
-        riskScore += 2;
-    } else if (slope > 10) {
-        riskScore += 1;
-    }
-
-    // Points pour le type de végétation
-    if (vegetation === 'sparse') {
-        riskScore += 3;
-    } else if (vegetation === 'moderate') {
-        riskScore += 2;
-    } else if (vegetation === 'dense') {
-        riskScore += 1;
-    }
-
-    // Points pour le type de sol
-    if (soilType === 'clay') {
-        riskScore += 3;
-    } else if (soilType === 'loamy') {
-        riskScore += 2;
-    } else if (soilType === 'sandy') {
-        riskScore += 1;
-    }
-
-    displayRisk(riskScore);
-}
-
-function displayRisk(riskScore) {
-    const riskLevelText = [
-        'Very Low Risk',
-        'Low Risk',
-        'Moderate Risk',
-        'High Risk',
-        'Very High Risk',
-        'Extreme Risk'
-    ];
-
-    let riskLevel = 'Very Low Risk';
-    if (riskScore >= 10) {
-        riskLevel = riskLevelText[5];
-    } else if (riskScore >= 8) {
-        riskLevel = riskLevelText[4];
-    } else if (riskScore >= 6) {
-        riskLevel = riskLevelText[3];
-    } else if (riskScore >= 4) {
-        riskLevel = riskLevelText[2];
-    } else if (riskScore >= 2) {
-        riskLevel = riskLevelText[1];
-    }
-
-    document.getElementById('riskLevel').textContent = `Risk Level: ${riskLevel}`;
-
-    // Afficher l'échelle des risques
-    const scale = document.getElementById('scale');
-    scale.innerHTML = '';
-
-    for (let i = 1; i <= 10; i++) {
-        const scaleItem = document.createElement('div');
-        scaleItem.classList.add('scale-item');
-        scaleItem.style.backgroundColor = i <= riskScore ? '#f44336' : '#4CAF50';
-        scaleItem.textContent = i;
-        scale.appendChild(scaleItem);
-    }
-}
-
-function showError(message) {
-    const errorMessage = document.createElement('div');
-    errorMessage.classList.add('error-message');
-    errorMessage.textContent = message;
-    document.body.appendChild(errorMessage);
-}
-
-function contact() {
-    window.location.href = "mailto:info@your-website.com";
-}
-</script>
-
-<div class="footer">
-    <p>&copy; 2023 Your Name. All rights reserved.</p>
-</div>
-
+            document.getElementById('result').innerHTML = `
+                <p><strong>Puissance :</strong> ${puissance.toFixed(2)} kW</p>
+                <p><strong>Énergie produite annuellement :</strong> ${energieProduiteAnnuelle.toFixed(2)} kWh</p>
+                <p><strong>Revenus annuels :</strong> ${revenusAnnuels.toFixed(2)} €</p>
+                <p><strong>Coûts annuels :</strong> ${coutsAnnuels.toFixed(2)} €</p>
+                <p><strong>Rentabilité annuelle :</strong> ${rentabiliteAnnuelle.toFixed(2)} €</p>
+                <p><strong>ROI sur ${duree_amortissement} ans :</strong> ${roi.toFixed(2)} €</p>
+            `;
+        }
+    </script>
 </body>
 </html>
