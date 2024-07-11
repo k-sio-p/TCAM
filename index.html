@@ -1,13 +1,13 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Calculateur de TCAM - Taux de Croissance Annuel Moyen</title>
-    <meta name="description" content="Utilisez notre calculateur de TCAM pour déterminer le taux de croissance annuel moyen de vos investissements sur une période donnée. Simple et rapide.">
-    <meta name="keywords" content="Calculateur TCAM, Taux de Croissance Annuel Moyen, investissement, croissance, finance">
-    <meta name="author" content="Votre Nom">
-    <link rel="canonical" href="https://www.votre-site.com/calculateur-tcam">
+    <title>CAGR Calculator - Compound Annual Growth Rate</title>
+    <meta name="description" content="Use our CAGR calculator to determine the compound annual growth rate of your investments over a given period. Simple and fast.">
+    <meta name="keywords" content="CAGR Calculator, Compound Annual Growth Rate, investment, growth, finance">
+    <meta name="author" content="Your Name">
+    <link rel="canonical" href="https://www.your-site.com/cagr-calculator">
     <style>
         body { font-family: Arial, sans-serif; margin: 0; padding: 0; background-color: #f4f4f4; color: #333; }
         .wrapper { display: flex; flex-direction: column; align-items: center; width: 100%; min-height: 100vh; padding: 20px; box-sizing: border-box; }
@@ -23,66 +23,71 @@
         .footer a { color: #4CAF50; }
         @media (min-width: 768px) { .wrapper { flex-direction: row; justify-content: space-between; } .container { margin: 0 20px; } }
     </style>
+    <!-- Preconnect for Google Ads -->
+    <link rel="preconnect" href="https://pagead2.googlesyndication.com">
+    <!-- Preload CSS -->
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Arial:wght@400;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Arial:wght@400;700&display=swap"></noscript>
 </head>
 <body>
 
 <div class="wrapper">
     <div class="ad left">
-        <!-- Publicité à gauche -->
+        <!-- Left Advertisement -->
         <ins class="adsbygoogle"
              style="display:block"
              data-ad-client="ca-pub-2168083320114212"
              data-ad-slot="XXXXXXX"
              data-ad-format="rectangle"
-             alt="Publicité gauche"></ins>
+             alt="Left Advertisement"></ins>
     </div>
 
     <div class="container">
-        <h1 style="text-align: center;">Calculateur du Taux de Croissance Annuel Moyen (TCAM)</h1>
-        <label for="startYear">Année de départ:</label>
-        <input type="number" id="startYear" name="startYear">
+        <h1 style="text-align: center;">Compound Annual Growth Rate (CAGR) Calculator</h1>
+        <label for="startYear">Start Year:</label>
+        <input type="number" id="startYear" name="startYear" aria-label="Start Year">
        
-        <label for="startValue">Donnée de départ:</label>
-        <input type="number" id="startValue" name="startValue">
+        <label for="startValue">Start Value:</label>
+        <input type="number" id="startValue" name="startValue" aria-label="Start Value">
        
-        <label for="endYear">Année de fin:</label>
-        <input type="number" id="endYear" name="endYear">
+        <label for="endYear">End Year:</label>
+        <input type="number" id="endYear" name="endYear" aria-label="End Year">
        
-        <label for="endValue">Donnée de fin:</label>
-        <input type="number" id="endValue" name="endValue">
+        <label for="endValue">End Value:</label>
+        <input type="number" id="endValue" name="endValue" aria-label="End Value">
        
-        <button onclick="calculateCAGR()">Calculer le TCAM</button>
+        <button onclick="calculateCAGR()">Calculate CAGR</button>
        
         <p id="result"></p>
        
         <div class="definition">
-            <h2>Définition du TCAM</h2>
-            <p>Le Taux de Croissance Annuel Moyen (TCAM) est une mesure utilisée pour déterminer la moyenne annuelle de croissance d'un investissement sur une période donnée. Il lisse les fluctuations de croissance sur plusieurs années pour fournir une image plus précise du taux de croissance moyen.</p>
-            <h3>Méthode de calcul du TCAM</h3>
-            <p>Pour calculer le TCAM, nous utilisons la formule suivante :</p>
-            <p><strong>TCAM = [(Valeur finale / Valeur initiale) ^ (1 / Nombre d'années)] - 1</strong></p>
-            <p>Où :</p>
+            <h2>Definition of CAGR</h2>
+            <p>The Compound Annual Growth Rate (CAGR) is a measure used to determine the mean annual growth rate of an investment over a specified period of time. It smooths out the growth rate fluctuations over several years to provide a more accurate picture of the average growth rate.</p>
+            <h3>How to Calculate CAGR</h3>
+            <p>To calculate the CAGR, we use the following formula:</p>
+            <p><strong>CAGR = [(End Value / Start Value) ^ (1 / Number of Years)] - 1</strong></p>
+            <p>Where:</p>
             <ul>
-                <li><strong>Valeur initiale</strong> est la valeur de départ de l'investissement.</li>
-                <li><strong>Valeur finale</strong> est la valeur de fin de l'investissement.</li>
-                <li><strong>Nombre d'années</strong> est la durée de l'investissement en années.</li>
+                <li><strong>Start Value</strong> is the initial value of the investment.</li>
+                <li><strong>End Value</strong> is the final value of the investment.</li>
+                <li><strong>Number of Years</strong> is the duration of the investment in years.</li>
             </ul>
         </div>
     </div>
 
     <div class="ad right">
-        <!-- Publicité à droite -->
+        <!-- Right Advertisement -->
         <ins class="adsbygoogle"
              style="display:block"
              data-ad-client="ca-pub-2168083320114212"
              data-ad-slot="XXXXXXX"
              data-ad-format="rectangle"
-             alt="Publicité droite"></ins>
+             alt="Right Advertisement"></ins>
     </div>
 </div>
 
 <div class="footer">
-    Vous souhaitez afficher votre annonce ? Contactez <a href="mailto:k.sio.p.communication@gmail.com">k.sio.p.communication@gmail.com</a>
+    Want to display your ad? Contact <a href="mailto:k.sio.p.communication@gmail.com">k.sio.p.communication@gmail.com</a>
 </div>
 
 <script>
@@ -93,12 +98,12 @@ function calculateCAGR() {
     const endValue = parseFloat(document.getElementById('endValue').value);
    
     if (isNaN(startYear) || isNaN(startValue) || isNaN(endYear) || isNaN(endValue)) {
-        alert('Veuillez entrer des valeurs numériques valides.');
+        alert('Please enter valid numeric values.');
         return;
     }
    
     if (startYear >= endYear) {
-        alert('L\'année de départ doit être inférieure à l\'année de fin.');
+        alert('The start year must be less than the end year.');
         return;
     }
    
@@ -106,7 +111,7 @@ function calculateCAGR() {
    
     const cagr = Math.pow((endValue / startValue), (1 / numYears)) - 1;
    
-    document.getElementById('result').innerHTML = `Le TCAM est de <strong>${(cagr * 100).toFixed(2)}%</strong>`;
+    document.getElementById('result').innerHTML = `The CAGR is <strong>${(cagr * 100).toFixed(2)}%</strong>`;
 }
 </script>
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2168083320114212" crossorigin="anonymous"></script>
