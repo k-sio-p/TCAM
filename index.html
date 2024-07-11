@@ -3,198 +3,112 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Calcul de Rentabilité d'un Barrage Hydraulique</title>
+    <title>Calculateur de TCAM - Taux de Croissance Annuel Moyen</title>
+    <meta name="description" content="Utilisez notre calculateur de TCAM pour déterminer le taux de croissance annuel moyen de vos investissements sur une période donnée. Simple et rapide.">
+    <meta name="keywords" content="Calculateur TCAM, Taux de Croissance Annuel Moyen, investissement, croissance, finance">
+    <meta name="author" content="Votre Nom">
+    <link rel="canonical" href="https://www.votre-site.com/calculateur-tcam">
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 20px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
-            min-height: 100vh;
-            background-color: #f0f0f0;
-        }
-        .container {
-            max-width: 600px;
-            width: 100%;
-            padding: 20px;
-            border: 1px solid #ccc;
-            border-radius: 10px;
-            background-color: white;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            margin-bottom: 20px;
-        }
-        h1, h2 {
-            text-align: center;
-        }
-        label {
-            display: block;
-            margin-top: 10px;
-        }
-        input[type="number"] {
-            width: calc(50% - 10px);
-            padding: 10px;
-            margin-top: 5px;
-            display: inline-block;
-        }
-        button {
-            display: block;
-            width: 100%;
-            padding: 10px;
-            margin-top: 20px;
-            background-color: #28a745;
-            color: white;
-            border: none;
-            border-radius: 5px;
-        }
-        .result {
-            margin-top: 20px;
-            padding: 10px;
-            background-color: #f8f9fa;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-        }
-        .explanation {
-            max-width: 600px;
-            padding: 20px;
-            background-color: white;
-            border: 1px solid #ccc;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
+        body { font-family: Arial, sans-serif; margin: 0; padding: 0; background-color: #f4f4f4; color: #333; }
+        .wrapper { display: flex; flex-direction: column; align-items: center; width: 100%; min-height: 100vh; padding: 20px; box-sizing: border-box; }
+        .ad { width: 350px; background-color: #fff; border: 1px solid #ccc; margin: 10px; padding: 10px; box-sizing: border-box; min-height: 950px; text-align: center; }
+        .container { display: flex; flex-direction: column; align-items: center; width: 100%; max-width: 600px; padding: 20px; border: 1px solid #ccc; border-radius: 10px; background-color: #fff; box-shadow: 2px 2px 12px #aaa; box-sizing: border-box; }
+        h1 { color: #007BFF; }
+        input, button { margin: 10px 0; padding: 10px; width: 100%; box-sizing: border-box; border: 1px solid #ccc; border-radius: 5px; }
+        button { background-color: #4CAF50; color: white; border: none; cursor: pointer; transition: background-color 0.3s ease; }
+        button:hover { background-color: #45a049; }
+        .definition { margin-top: 30px; text-align: left; width: 100%; }
+        .definition h2, .definition h3 { color: #007BFF; }
+        .footer { text-align: center; margin-top: 20px; color: #007BFF; }
+        .footer a { color: #4CAF50; }
+        @media (min-width: 768px) { .wrapper { flex-direction: row; justify-content: space-between; } .container { margin: 0 20px; } }
     </style>
 </head>
 <body>
+
+<div class="wrapper">
+    <div class="ad left">
+        <!-- Publicité à gauche -->
+        <ins class="adsbygoogle"
+             style="display:block"
+             data-ad-client="ca-pub-2168083320114212"
+             data-ad-slot="XXXXXXX"
+             data-ad-format="rectangle"
+             alt="Publicité gauche"></ins>
+    </div>
+
     <div class="container">
-        <h1>Calcul de Rentabilité d'un Barrage Hydraulique</h1>
-        <label for="debit">Débit d'eau (en m³/s)</label>
-        <input type="number" id="debit" placeholder="Entrez le débit d'eau">
-
-        <label for="hauteur">Hauteur de chute (en mètres)</label>
-        <input type="number" id="hauteur" placeholder="Entrez la hauteur de chute">
-
-        <label for="efficacite">Efficacité du système (%)</label>
-        <input type="number" id="efficacite" step="0.1" placeholder="Entrez l'efficacité du système">
-
-        <label for="prix_vente">Prix de vente de l'électricité (€/kWh)</label>
-        <input type="number" id="prix_vente" step="0.01" placeholder="Entrez le prix de vente de l'électricité">
-
-        <label for="cout_construction">Coût de construction (en millions d'euros)</label>
-        <input type="number" id="cout_construction" step="0.01" placeholder="Entrez le coût de construction">
-
-        <label for="cout_maintenance">Coût de maintenance annuel (en millions d'euros)</label>
-        <input type="number" id="cout_maintenance" step="0.01" placeholder="Entrez le coût de maintenance annuel">
-
-        <label for="duree_amortissement">Durée d'amortissement (en années)</label>
-        <input type="number" id="duree_amortissement" placeholder="Entrez la durée d'amortissement">
-
-        <button onclick="calculerRentabilite()">Calculer</button>
-
-        <div class="result" id="result">
-            <!-- Les résultats seront affichés ici -->
+        <h1 style="text-align: center;">Calculateur du Taux de Croissance Annuel Moyen (TCAM)</h1>
+        <label for="startYear">Année de départ:</label>
+        <input type="number" id="startYear" name="startYear">
+       
+        <label for="startValue">Donnée de départ:</label>
+        <input type="number" id="startValue" name="startValue">
+       
+        <label for="endYear">Année de fin:</label>
+        <input type="number" id="endYear" name="endYear">
+       
+        <label for="endValue">Donnée de fin:</label>
+        <input type="number" id="endValue" name="endValue">
+       
+        <button onclick="calculateCAGR()">Calculer le TCAM</button>
+       
+        <p id="result"></p>
+       
+        <div class="definition">
+            <h2>Définition du TCAM</h2>
+            <p>Le Taux de Croissance Annuel Moyen (TCAM) est une mesure utilisée pour déterminer la moyenne annuelle de croissance d'un investissement sur une période donnée. Il lisse les fluctuations de croissance sur plusieurs années pour fournir une image plus précise du taux de croissance moyen.</p>
+            <h3>Méthode de calcul du TCAM</h3>
+            <p>Pour calculer le TCAM, nous utilisons la formule suivante :</p>
+            <p><strong>TCAM = [(Valeur finale / Valeur initiale) ^ (1 / Nombre d'années)] - 1</strong></p>
+            <p>Où :</p>
+            <ul>
+                <li><strong>Valeur initiale</strong> est la valeur de départ de l'investissement.</li>
+                <li><strong>Valeur finale</strong> est la valeur de fin de l'investissement.</li>
+                <li><strong>Nombre d'années</strong> est la durée de l'investissement en années.</li>
+            </ul>
         </div>
     </div>
 
-    <div class="explanation">
-        <h2>Explication des Calculs</h2>
-        <p><strong>1. Calcul de la Puissance (en kW)</strong></p>
-        <p>
-            La puissance générée par l'eau qui tombe dans un barrage hydraulique est calculée à l'aide de la formule suivante :
-            <br>
-            <code>P = ρ × g × Q × H × η</code>
-            <br>
-            Où :
-            <ul>
-                <li>ρ : Densité de l'eau (1000 kg/m³)</li>
-                <li>g : Accélération due à la gravité (9.81 m/s²)</li>
-                <li>Q : Débit d'eau (en m³/s)</li>
-                <li>H : Hauteur de chute (en mètres)</li>
-                <li>η : Efficacité du système (en décimal, par exemple 90% devient 0.90)</li>
-            </ul>
-            Pour convertir la puissance en kilowatts (kW), on divise par 1000 :
-            <br>
-            <code>Puissance = (ρ × g × Q × H × η) / 1000</code>
-        </p>
-        <p><strong>2. Calcul de l'Énergie Produite Annuelle (en kWh)</strong></p>
-        <p>
-            L'énergie produite annuellement est calculée en multipliant la puissance par le nombre total d'heures dans une année :
-            <br>
-            <code>Énergie Produite Annuelle = Puissance × 24 × 365</code>
-        </p>
-        <p><strong>3. Calcul des Revenus Annuels</strong></p>
-        <p>
-            Les revenus annuels sont calculés en multipliant l'énergie produite annuellement par le prix de vente de l'électricité (en €/kWh) :
-            <br>
-            <code>Revenus Annuels = Énergie Produite Annuelle × Prix de Vente</code>
-        </p>
-        <p><strong>4. Calcul des Coûts Annuels</strong></p>
-        <p>
-            Les coûts annuels incluent principalement les coûts de maintenance :
-            <br>
-            <code>Coûts Annuels = Coût de Maintenance Annuel × 1,000,000</code>
-        </p>
-        <p><strong>5. Calcul de la Rentabilité Financière Annuelle</strong></p>
-        <p>
-            La rentabilité financière annuelle est calculée en soustrayant les coûts annuels des revenus annuels :
-            <br>
-            <code>Rentabilité Annuelle = Revenus Annuels - Coûts Annuels</code>
-        </p>
-        <p><strong>6. Calcul du Retour sur Investissement (ROI)</strong></p>
-        <p>
-            Le retour sur investissement (ROI) sur la durée d'amortissement est calculé en soustrayant les coûts totaux des revenus totaux sur la période d'amortissement :
-            <br>
-            <code>Total Revenus = Revenus Annuels × Durée d'Amortissement</code>
-            <br>
-            <code>Total Coûts = (Coût de Construction × 1,000,000) + (Coûts Annuels × Durée d'Amortissement)</code>
-            <br>
-            <code>ROI = Total Revenus - Total Coûts</code>
-        </p>
+    <div class="ad right">
+        <!-- Publicité à droite -->
+        <ins class="adsbygoogle"
+             style="display:block"
+             data-ad-client="ca-pub-2168083320114212"
+             data-ad-slot="XXXXXXX"
+             data-ad-format="rectangle"
+             alt="Publicité droite"></ins>
     </div>
+</div>
 
-    <script>
-        function calculerRentabilite() {
-            const debit = document.getElementById('debit').value;
-            const hauteur = document.getElementById('hauteur').value;
-            const efficacite = document.getElementById('efficacite').value;
-            const prix_vente = document.getElementById('prix_vente').value;
-            const cout_construction = document.getElementById('cout_construction').value;
-            const cout_maintenance = document.getElementById('cout_maintenance').value;
-            const duree_amortissement = document.getElementById('duree_amortissement').value;
+<div class="footer">
+    Vous souhaitez afficher votre annonce ? Contactez <a href="mailto:k.sio.p.communication@gmail.com">k.sio.p.communication@gmail.com</a>
+</div>
 
-            // Calcul de la puissance (en kW) : P = ρ * g * Q * H * η
-            const densite_eau = 1000; // en kg/m³
-            const gravite = 9.81; // en m/s²
-            const efficacite_decimale = efficacite / 100; // Convertir en décimal
-            const puissance = densite_eau * gravite * debit * hauteur * efficacite_decimale / 1000; // en kW
-
-            // Calcul de l'énergie produite annuellement (en kWh)
-            const energieProduiteAnnuelle = puissance * 24 * 365; // en kWh
-
-            // Calcul des revenus annuels
-            const revenusAnnuels = energieProduiteAnnuelle * prix_vente;
-
-            // Calcul des coûts annuels
-            const coutsAnnuels = cout_maintenance * 1000000;
-
-            // Calcul de la rentabilité financière annuelle
-            const rentabiliteAnnuelle = revenusAnnuels - coutsAnnuels;
-
-            // Calcul du retour sur investissement (ROI) sur la durée d'amortissement
-            const totalRevenus = revenusAnnuels * duree_amortissement;
-            const totalCouts = (cout_construction * 1000000) + (coutsAnnuels * duree_amortissement);
-            const roi = totalRevenus - totalCouts;
-
-            document.getElementById('result').innerHTML = `
-                <p><strong>Puissance :</strong> ${puissance.toFixed(2)} kW</p>
-                <p><strong>Énergie produite annuellement :</strong> ${energieProduiteAnnuelle.toFixed(2)} kWh</p>
-                <p><strong>Revenus annuels :</strong> ${revenusAnnuels.toFixed(2)} €</p>
-                <p><strong>Coûts annuels :</strong> ${coutsAnnuels.toFixed(2)} €</p>
-                <p><strong>Rentabilité annuelle :</strong> ${rentabiliteAnnuelle.toFixed(2)} €</p>
-                <p><strong>ROI sur ${duree_amortissement} ans :</strong> ${roi.toFixed(2)} €</p>
-            `;
-        }
-    </script>
+<script>
+function calculateCAGR() {
+    const startYear = parseFloat(document.getElementById('startYear').value);
+    const startValue = parseFloat(document.getElementById('startValue').value);
+    const endYear = parseFloat(document.getElementById('endYear').value);
+    const endValue = parseFloat(document.getElementById('endValue').value);
+   
+    if (isNaN(startYear) || isNaN(startValue) || isNaN(endYear) || isNaN(endValue)) {
+        alert('Veuillez entrer des valeurs numériques valides.');
+        return;
+    }
+   
+    if (startYear >= endYear) {
+        alert('L\'année de départ doit être inférieure à l\'année de fin.');
+        return;
+    }
+   
+    const numYears = endYear - startYear;
+   
+    const cagr = Math.pow((endValue / startValue), (1 / numYears)) - 1;
+   
+    document.getElementById('result').innerHTML = `Le TCAM est de <strong>${(cagr * 100).toFixed(2)}%</strong>`;
+}
+</script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2168083320114212" crossorigin="anonymous"></script>
 </body>
 </html>
