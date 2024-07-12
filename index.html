@@ -15,7 +15,6 @@
     <style>
         body { font-family: 'Arial', sans-serif; margin: 0; padding: 0; background-color: #f4f4f4; color: #333; }
         .wrapper { display: flex; flex-direction: column; align-items: center; width: 100%; min-height: 100vh; padding: 20px; box-sizing: border-box; }
-        .ad { width: 350px; background-color: #fff; border: 1px solid #ccc; margin: 10px; padding: 10px; box-sizing: border-box; min-height: 950px; text-align: center; }
         .container { display: flex; flex-direction: column; align-items: center; width: 100%; max-width: 600px; padding: 20px; border: 1px solid #ccc; border-radius: 10px; background-color: #fff; box-shadow: 2px 2px 12px #aaa; box-sizing: border-box; }
         h1 { color: #007BFF; text-align: center; }
         input, button { margin: 10px 0; padding: 10px; width: 100%; box-sizing: border-box; border: 1px solid #ccc; border-radius: 5px; }
@@ -46,17 +45,6 @@
 <body>
 
 <div class="wrapper">
-    <div class="ad left">
-        <!-- Publicité à gauche -->
-        <ins class="adsbygoogle"
-             style="display:block"
-             data-ad-client="ca-pub-2168083320114212"
-             data-ad-slot="XXXXXXX"
-             data-ad-format="rectangle"
-             alt="Publicité gauche"
-             aria-label="Publicité gauche"></ins>
-    </div>
-
     <div class="container">
         <h1>Calculateur du Taux de Croissance Annuel Moyen (TCAM)</h1>
         <label for="startYear">Année de départ :</label>
@@ -86,17 +74,6 @@
                 <li><strong>Nombre d'années</strong> est la durée de l'investissement en années.</li>
             </ul>
         </div>
-    </div>
-
-    <div class="ad right">
-        <!-- Publicité à droite -->
-        <ins class="adsbygoogle"
-             style="display:block"
-             data-ad-client="ca-pub-2168083320114212"
-             data-ad-slot="XXXXXXX"
-             data-ad-format="rectangle"
-             alt="Publicité droite"
-             aria-label="Publicité droite"></ins>
     </div>
 </div>
 
@@ -128,6 +105,5 @@ function calculateCAGR() {
     document.getElementById('result').innerHTML = `Le TCAM est de <strong>${(cagr * 100).toFixed(2)}%</strong>`;
 }
 </script>
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2168083320114212" crossorigin="anonymous"></script>
 </body>
 </html>
