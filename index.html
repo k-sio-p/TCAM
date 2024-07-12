@@ -21,6 +21,7 @@
         input, button { margin: 10px 0; padding: 10px; width: 100%; box-sizing: border-box; border: 1px solid #ccc; border-radius: 5px; }
         button { background-color: #4CAF50; color: white; border: none; cursor: pointer; transition: background-color 0.3s ease; }
         button:hover { background-color: #45a049; }
+        .result-banner { background-color: #FFD700; color: #333; padding: 10px; margin-top: 20px; border-radius: 5px; text-align: center; font-size: 1.2em; font-weight: bold; }
         .definition { margin-top: 30px; text-align: left; width: 100%; }
         .definition h2, .definition h3 { color: #007BFF; }
         .footer { text-align: center; margin-top: 20px; color: #007BFF; }
@@ -70,7 +71,7 @@
         <label for="endValue">Valeur de fin :</label>
         <input type="number" id="endValue" name="endValue" aria-label="Valeur de fin" oninput="calculateCAGR()">
        
-        <p id="result">Le TCAM est de <strong>0.00%</strong></p>
+        <div id="result" class="result-banner">Le TCAM est de <strong>0.00%</strong></div>
        
         <div class="definition">
             <h2>Définition du TCAM</h2>
