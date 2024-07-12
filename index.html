@@ -14,8 +14,9 @@
     <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Arial:wght@400;700&display=swap"></noscript>
     <style>
         body { font-family: 'Arial', sans-serif; margin: 0; padding: 0; background-color: #f4f4f4; color: #333; }
-        .wrapper { display: flex; flex-direction: column; align-items: center; width: 100%; min-height: 100vh; padding: 20px; box-sizing: border-box; }
-        .container { display: flex; flex-direction: column; align-items: center; width: 100%; max-width: 600px; padding: 20px; border: 1px solid #ccc; border-radius: 10px; background-color: #fff; box-shadow: 2px 2px 12px #aaa; box-sizing: border-box; }
+        .wrapper { display: flex; flex-direction: row; justify-content: center; align-items: flex-start; width: 100%; min-height: 100vh; padding: 20px; box-sizing: border-box; }
+        .container { flex: 1; display: flex; flex-direction: column; align-items: center; max-width: 600px; padding: 20px; border: 1px solid #ccc; border-radius: 10px; background-color: #fff; box-shadow: 2px 2px 12px #aaa; box-sizing: border-box; }
+        .sidebar { flex: 1; padding: 20px; box-sizing: border-box; }
         h1 { color: #007BFF; text-align: center; }
         input, button { margin: 10px 0; padding: 10px; width: 100%; box-sizing: border-box; border: 1px solid #ccc; border-radius: 5px; }
         button { background-color: #4CAF50; color: white; border: none; cursor: pointer; transition: background-color 0.3s ease; }
@@ -25,22 +26,8 @@
         .definition h2, .definition h3 { color: #007BFF; }
         .footer { text-align: center; margin-top: 20px; color: #007BFF; }
         .footer a { color: #FFD700; } /* Couleur jaune du bandeau de résultat */
-        @media (min-width: 768px) { .wrapper { flex-direction: row; justify-content: space-between; } .container { margin: 0 20px; } }
+        @media (max-width: 768px) { .wrapper { flex-direction: column; } .sidebar { order: -1; } }
     </style>
-    <!-- Données structurées pour les rich snippets -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "WebPage",
-      "name": "Calculateur TCAM - Taux de Croissance Annuel Moyen",
-      "description": "Utilisez notre calculateur TCAM pour déterminer le taux de croissance annuel moyen de vos investissements sur une période donnée. Simple, rapide et précis.",
-      "url": "https://www.votre-site.com/calculateur-tcam",
-      "author": {
-        "@type": "Person",
-        "name": "Votre Nom"
-      }
-    }
-    </script>
 </head>
 <body>
 
@@ -75,6 +62,25 @@
             </ul>
         </div>
     </div>
+
+    <aside class="sidebar">
+        <section class="info-section">
+            <h2>À propos du TCAM</h2>
+            <p>Le Taux de Croissance Annuel Moyen (TCAM) est une mesure utilisée pour évaluer le rendement moyen annuel d'un investissement sur une période donnée.</p>
+            <p>Ce calculateur utilise la formule : <strong>TCAM = [(Valeur de fin / Valeur de départ) ^ (1 / Nombre d'années)] - 1</strong></p>
+        </section>
+        <section class="example-section">
+            <h2>Exemple d'utilisation</h2>
+            <p>Supposons que vous ayez investi 100 € en 2010 et que sa valeur soit passée à 150 € en 2020. Quel serait le TCAM de cet investissement ?</p>
+        </section>
+        <section class="resources-section">
+            <h2>Ressources supplémentaires</h2>
+            <ul>
+                <li><a href="https://fr.wikipedia.org/wiki/Taux_de_croissance_annuel_moyen" target="_blank">Wikipedia - TCAM</a></li>
+                <li><a href="https://www.investopedia.com/terms/c/cagr.asp" target="_blank">Investopedia - CAGR</a></li>
+            </ul>
+        </section>
+    </aside>
 </div>
 
 <div class="footer">
@@ -102,8 +108,9 @@ function calculateCAGR() {
 
     const numYears = endYear - startYear;
     const cagr = Math.pow((endValue / startValue), (1 / numYears)) - 1;
-    document.getElementById('result').innerHTML = Le TCAM est de <strong>${(cagr * 100).toFixed(2)}%</strong>;
+    document.getElementById('result').innerHTML = 'Le TCAM est de <strong>' + (cagr * 100).toFixed(2) + '%</strong>';
 }
 </script>
+
 </body>
 </html>
