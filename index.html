@@ -26,7 +26,6 @@
         .footer { text-align: center; margin-top: 20px; color: #007BFF; }
         .footer a { color: #FFD700; } /* Couleur jaune du bandeau de résultat */
         @media (min-width: 768px) { .wrapper { flex-direction: row; justify-content: space-between; } .container { margin: 0 20px; } }
-        .chart-container { width: 400px; height: 300px; }
     </style>
     <!-- Données structurées pour les rich snippets -->
     <script type="application/ld+json">
@@ -76,14 +75,6 @@
             </ul>
         </div>
     </div>
-
-    <!-- Graphique en SVG -->
-    <div class="chart-container">
-        <svg width="400" height="300">
-            <!-- Exemple de ligne de tendance statique -->
-            <polyline fill="none" stroke="blue" stroke-width="2" points="50,250 150,200 250,150 350,100" />
-        </svg>
-    </div>
 </div>
 
 <div class="footer">
@@ -111,9 +102,7 @@ function calculateCAGR() {
 
     const numYears = endYear - startYear;
     const cagr = Math.pow((endValue / startValue), (1 / numYears)) - 1;
-    document.getElementById('result').innerHTML = `Le TCAM est de <strong>${(cagr * 100).toFixed(2)}%</strong>`;
-
-    // Vous pouvez ajuster le graphique SVG ici en utilisant les valeurs calculées (cagr, numYears, etc.)
+    document.getElementById('result').innerHTML = Le TCAM est de <strong>${(cagr * 100).toFixed(2)}%</strong>;
 }
 </script>
 </body>
